@@ -1,6 +1,13 @@
 
+import { Header } from '../components/Header';
+import { Main } from '../components/Main';
+import { Footer } from '../components/Footer';
 export const ViewPrincipalLayout = () => {
   return (
-    <div className="text-3xl font-bold">nn</div>
+    <>
+      <Header/>
+      <Main/>
+      <Footer/>
+    </>
   )
 }
