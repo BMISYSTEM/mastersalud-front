@@ -38,7 +38,7 @@ export const Header: React.FC = () => {
         
         <nav className='absolute border-b-2 w-full flex flex-row gap-5 justify-between p-2 items-center z-50'>
             {/* logo  */}
-            <div className='w-full flex flex-row justify-start'>
+            <div className='w-1/3 flex flex-row justify-start '>
                 <p className='text-3xl font-bold p-2'>MasterSalud</p>
             </div>
 
@@ -52,13 +52,13 @@ export const Header: React.FC = () => {
                 <Link to={'/'}>
                     <p className='p-2 text-white'>Centros Medicos</p>
                 </Link>
-                <Link to={'/'}>
+                <Link to={'/e-comerce'}>
                     <p className='p-2 text-white'>E-Comerce</p>
                 </Link>
                 <Link to={'/'}>
                     <p className='p-2 text-white'>Contactanos</p>
                 </Link>
-                <Link to={'/'}>
+                <Link to={'/login'}>
                     <p className='border-2 p-2 border-sky-500 rounded-xl bg-[#1C76ED]/40 hover:bg-[#1C76ED]/60 transition-all backdrop-blur-xl font-bold text-white'>Iniciar Session</p>
                 </Link>
             </div>
