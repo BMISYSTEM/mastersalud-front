@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
-
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 export const PanelLayout = () => {
   return (
     <div className="flex h-screen overflow-hidden">
@@ -10,6 +11,7 @@ export const PanelLayout = () => {
           <Outlet/>
         </main>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

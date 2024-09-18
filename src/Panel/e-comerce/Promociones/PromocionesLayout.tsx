@@ -33,6 +33,7 @@ export const PromocionesLayout = () => {
         >
           Crear Nueva Promocion
         </button>
+        <ListaPromociones promocion={promociones} />
         <ReactModal
           isOpen={modalIsOpen}
           onRequestClose={() => setModalIsOpen(false)}
