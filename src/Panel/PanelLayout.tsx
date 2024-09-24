@@ -1,7 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import usePanel from "./Hooks/usePanel";
 export const PanelLayout = () => {
+  const {user} = usePanel({middleware:'auth',url:'/panel/home'})
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />

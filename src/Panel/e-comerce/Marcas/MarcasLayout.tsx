@@ -27,23 +27,7 @@ export const MarcasLayout = () => {
     };
     const marcasAll:Marcas = data?.data;
 
-    const deleteMarca = async(id:number) =>{
-        const datos = {
-          id:id
-        }
-      try {
-        setDelete(true)
-        const {data} = await clienteAxios.post('/api/marcas/delete',datos,{
-          headers:{
-            Authorization:`Bearer 2|sSrE8JpdOfrbrSppFU9CJVqYL6ECpxpiqfhufSPd60257f02`
-          }
-        })
-        mutate()
-        setDelete(false)
-      } catch (error) {
-        console.log(error)
-      }
-    }
+
 
   return (
     <>

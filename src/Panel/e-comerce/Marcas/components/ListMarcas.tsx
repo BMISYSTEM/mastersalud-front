@@ -4,6 +4,7 @@ import { clienteAxios } from "../../../../config/axios";
 import useMarca from "../useMarcas/useMarca";
 import ReactModal from "react-modal";
 import ModalUpdateMarca from "./ModalUpdateMarca";
+import { toast } from "react-toastify";
 
 export interface Marcas {
   succes: Succe[];
@@ -33,7 +34,10 @@ export const ListMarcas = ({ succes }: Marcas) => {
       await mutate();
       setDelete(false);
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      toast.error('Se genero un error al eliminarlo, verifique que esta marca no este asignada a un producto');
+    }finally{
+      setDelete(false);
     }
   };
   const openModalUpdate = async(id:number) =>{

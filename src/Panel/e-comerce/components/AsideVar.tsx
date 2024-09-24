@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const AsideVar = () => {
   return (
-    <aside className="w-64 bg-slate-400 border-l-2 text-white h-screen p-4">
+    <aside className="w-52 bg-slate-400 border-l-2 text-white h-screen p-4">
     <h1 className="text-2xl font-semibold mb-6">E-Comerce</h1>
     <nav>
       <ul>

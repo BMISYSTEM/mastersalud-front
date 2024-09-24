@@ -1,25 +1,35 @@
 import React, { useState } from 'react'
+import usePromociones from '../usePromociones/usePromociones';
+import { toast } from 'react-toastify';
 
 interface promocion{
     nombre:string;
     porcentaje:number;
-}
-
-interface PropsNewPromo {
-    onSubmit:(promocion:promocion)=>void
+    activo:number
 }
 
 
 
-export const ModalNewPromocion:React.FC<PropsNewPromo> = ({onSubmit}) => {
+
+export const ModalNewPromocion = () => {
+  const {createPromo,mutate} = usePromociones()
     const [nombre, setName] = useState("");
     const [porcentaje, setPorcentaje] = useState(0);
 
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ nombre,porcentaje  });
-    setName("");
+    const datos ={
+      nombre:nombre,
+      porcentaje:porcentaje,
+      activo:1
+    }
+    await toast.promise(createPromo(datos),{
+      error:'Se genero un error inesperado, consulte con soporte',
+      pending:'Guardando promocion',
+      success:'La promocion se guardo de manera correcta'
+    });
+    mutate()
   };
 
   return (
@@ -52,7 +62,7 @@ export const ModalNewPromocion:React.FC<PropsNewPromo> = ({onSubmit}) => {
         type="submit"
         className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
       >
-        Crear Marca
+        Crear Promocion
       </button>
     </form>
   )

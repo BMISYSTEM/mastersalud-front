@@ -45,7 +45,7 @@ const ModalUpdateMarca = ({id}:{id:number}) => {
             setName(respuesta.succes.nombre); // Actualiza el nombre cuando respuesta cambie
         }
     }, [respuesta]);
-    console.log(respuesta?.succes.nombre)
+
   return (
     <form onSubmit={handleclickUpdate} className="space-y-4">
       <h2 className="text-2xl font-semibold">Actualizar Marca</h2>

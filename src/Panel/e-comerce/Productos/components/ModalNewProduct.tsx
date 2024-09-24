@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { PhotoIcon } from '@heroicons/react/24/outline';
+import useProductos from "../hooks/useProductos";
+import { toast } from "react-toastify";
+import useMarca from "../../Marcas/useMarcas/useMarca";
+import usePromociones from "../../Promociones/usePromociones/usePromociones";
+import { Marcas } from "../../Marcas/MarcasLayout";
+import { Promociones } from "../../Promociones/PromocionesLayout";
 
 interface Product {
   id: number;
@@ -9,11 +15,11 @@ interface Product {
   promotion: string;
   status: string;
 }
-interface ProductFormProps {
-  onSubmit: (product: Product) => void;
-}
 
-export const ModalNewProduct: React.FC<ProductFormProps> = ({ onSubmit }) => {
+export const ModalNewProduct = () => {
+  const {data:allMarca} = useMarca()
+  const {data:allPromocion} = usePromociones()
+  const {createProducto} = useProductos()
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState(0);
@@ -24,13 +30,31 @@ export const ModalNewProduct: React.FC<ProductFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ name, brand, price, id, promotion, status });
-    setName("");
-    setBrand("");
-    setPrice(0);
+
+    const data = new FormData;
+    data.append('nombre',name);
+    data.append('id_marca',brand);
+    data.append('id_promocion',promotion);
+    data.append('precio',price.toString());
+    if (selectedImages) {
+      for (let i = 0; i < selectedImages.length; i++) {
+        data.append('fotos[]', selectedImages[i]);
+      }
+    }
+
+    toast.promise(createProducto(data),{
+      error:'se genero un error inesperado, contacte soporte',
+      pending:'Guardando producto...',
+      success:'Se guardo correctamente el producto'
+    })
   };
 
-  
+  const allmarcas:Marcas = allMarca?.data;
+  const allpromociones:Promociones = allPromocion?.data;
+
+  console.log(allmarcas)
+  console.log(allpromociones)
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
@@ -41,9 +65,10 @@ export const ModalNewProduct: React.FC<ProductFormProps> = ({ onSubmit }) => {
       }
       setSelectedImages(fileArray);
     }
+    
   };
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
       <h2 className="text-2xl font-semibold">Nuevo Producto</h2>
       <div>
         <label className="block text-gray-700">Nombre:</label>
@@ -57,13 +82,12 @@ export const ModalNewProduct: React.FC<ProductFormProps> = ({ onSubmit }) => {
       </div>
       <div>
         <label className="block text-gray-700">Marca:</label>
-        <input
-          type="text"
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
-          required
-          className="w-full px-3 py-2 border border-gray-300 rounded"
-        />
+        <select name="" id="" className="py-3 px-2 border w-full">
+          <option value="" selected={true}>Seleccione una opcion</option>
+          {allmarcas.succes.map((marcas,index)=>(
+            <option key={index} value={marcas.id}>{marcas.nombre}</option>
+          ))}
+        </select>
       </div>
       <div>
         <label className="block text-gray-700">Precio:</label>
@@ -83,8 +107,11 @@ export const ModalNewProduct: React.FC<ProductFormProps> = ({ onSubmit }) => {
           className="p-x-2 border w-full py-2 rounded border-gray-300"
           onChange={(e)=>setPromotion(e.target.value)}
         >
-          <option value="0">Sin promocion</option>
-          <option value="10">10%</option>
+          <option value="" selected={true}>Seleccione una opcion</option>
+          {allpromociones.succes.map((promocion,index)=>(
+            <option key={index} value={promocion.id}>{promocion.nombre}</option>
+          ))}
+ 
         </select>
       </div>
       <div>
