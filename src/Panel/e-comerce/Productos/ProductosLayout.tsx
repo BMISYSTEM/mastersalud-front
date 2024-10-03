@@ -23,6 +23,10 @@ export interface Succe {
   precio:           number;
   estado:           string;
   porcentaje:       number;
+  imagen1:          string;
+  imagen2:          string;
+  imagen3:          string;
+  imagen4:          string;
 }
 
 export const ProductosLayout = () => {

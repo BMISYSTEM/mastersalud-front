@@ -4,11 +4,12 @@ import { useState } from 'react'
 import { Respuesta } from '../components/ModalUpdateMarca'
 
 const useMarca = () => {
+    const token = localStorage.getItem('token')
     const [marcaSelect,setMarcaSelect] = useState(0)
     const {data,error,isLoading,isValidating,mutate} = useSWR('/api/marcas/index',()=>
     clienteAxios.get('/api/marcas/index',{
         headers:{
-            Authorization:`Bearer 2|sSrE8JpdOfrbrSppFU9CJVqYL6ECpxpiqfhufSPd60257f02`
+            Authorization:`Bearer ${token}`
         }
     }))
 
@@ -17,7 +18,7 @@ const useMarca = () => {
         try {
             const {data} = await clienteAxios.post('/api/marcas/create',datos,{
                 headers:{
-                    Authorization:`Bearer 2|sSrE8JpdOfrbrSppFU9CJVqYL6ECpxpiqfhufSPd60257f02`
+                    Authorization:`Bearer ${token}`
                 }
             });
             setRespuesta(data)
@@ -29,7 +30,7 @@ const useMarca = () => {
     const updateMarca = async(datos:{id:number,nombre:string}) =>{
             const {data} = await clienteAxios.post('/api/marcas/update',datos,{
                 headers:{
-                    Authorization:`Bearer 2|sSrE8JpdOfrbrSppFU9CJVqYL6ECpxpiqfhufSPd60257f02`
+                    Authorization:`Bearer ${token}`
                 }
             })
             console.log(data)
@@ -40,7 +41,7 @@ const useMarca = () => {
         try {
             const {data} = await clienteAxios.post('/api/marcas/find',{id:id},{
                 headers:{
-                    Authorization:`Bearer 2|sSrE8JpdOfrbrSppFU9CJVqYL6ECpxpiqfhufSPd60257f02`
+                    Authorization:`Bearer ${token}`
                 }
             })
             setRespuesta(data)

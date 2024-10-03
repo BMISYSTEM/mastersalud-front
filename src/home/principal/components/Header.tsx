@@ -10,6 +10,7 @@ import doctor from '../assets/iconoDoctor.png'
 import pointer from '../assets/iconoPointer.png'
 import flecha from '../assets/flecha.png'
 import lupa from '../assets/lupa.png'
+import logo from '../../../assets/logo.png'
 export const Header: React.FC = () => {
 
 
@@ -39,7 +40,7 @@ export const Header: React.FC = () => {
         <nav className='absolute border-b-2 w-full flex flex-row gap-5 justify-between p-2 items-center z-50'>
             {/* logo  */}
             <div className='w-1/3 flex flex-row justify-start '>
-                <p className='text-3xl font-bold p-2'>MasterSalud</p>
+                <img src={logo} alt="" className='w-24' />
             </div>
 
             <div className='w-full flex flex-row justify-end gap-2'>
@@ -70,7 +71,7 @@ export const Header: React.FC = () => {
             <img src={circulo} alt="" className='object-contain p-2 w-full h-full' />
         </div>
         {/* buscador */}
-        <section className='absolute w-[40rem] h-[25rem] mt-[15%] ml-[10%] rounded-lg border-2 bg-[#1C76ED]/40 backdrop-blur-xl  border-sky-600 z-50 flex flex-col gap-3 items-center'>
+        <section className=' absolute w-[40rem] h-[25rem] mt-[15%] ml-[10%] rounded-lg border-2 bg-[#1C76ED]/40 backdrop-blur-xl  border-sky-600 z-50 flex flex-col gap-3 items-center'>
                 <p className='text-2xl font-bold  text-center p-2 text-white'>Encuentra a tu especialista</p>
                 <div className='w-1/2 flex flex-row gap-2 justify-between'>
                     <button className='p-2 bg-slate-200 font-bold rounded-sm flex flex-row gap-2 hover:bg-slate-400 transition-all'>

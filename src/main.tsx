@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router.tsx'
 import { MastersaludContext } from './home/Context/MastersaludContext.tsx'
-
+import './animaciones.css'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MastersaludContext>

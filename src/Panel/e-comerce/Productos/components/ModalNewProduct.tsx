@@ -23,9 +23,7 @@ export const ModalNewProduct = () => {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState(0);
-  const [id, setId] = useState(0);
   const [promotion, setPromotion] = useState("");
-  const [status, setEstatus] = useState("");
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -52,8 +50,7 @@ export const ModalNewProduct = () => {
   const allmarcas:Marcas = allMarca?.data;
   const allpromociones:Promociones = allPromocion?.data;
 
-  console.log(allmarcas)
-  console.log(allpromociones)
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -68,7 +65,7 @@ export const ModalNewProduct = () => {
     
   };
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4 overflow-auto">
       <h2 className="text-2xl font-semibold">Nuevo Producto</h2>
       <div>
         <label className="block text-gray-700">Nombre:</label>
@@ -82,9 +79,9 @@ export const ModalNewProduct = () => {
       </div>
       <div>
         <label className="block text-gray-700">Marca:</label>
-        <select name="" id="" className="py-3 px-2 border w-full">
+        <select name="" id="" className="py-3 px-2 border w-full" onChange={(e)=>setBrand(e.target.value)}>
           <option value="" selected={true}>Seleccione una opcion</option>
-          {allmarcas.succes.map((marcas,index)=>(
+          {allmarcas?.succes?.map((marcas,index)=>(
             <option key={index} value={marcas.id}>{marcas.nombre}</option>
           ))}
         </select>
@@ -95,9 +92,9 @@ export const ModalNewProduct = () => {
           type="number"
           value={price}
           onChange={(e) => setPrice(Number(e.target.value))}
-          required
           className="w-full px-3 py-2 border border-gray-300 rounded"
         />
+        <p>{price.toLocaleString('es-CO',{style:'currency',currency:'COP'})}</p>
       </div>
       <div>
         <label className="block text-gray-700">Promocion:</label>
@@ -108,7 +105,7 @@ export const ModalNewProduct = () => {
           onChange={(e)=>setPromotion(e.target.value)}
         >
           <option value="" selected={true}>Seleccione una opcion</option>
-          {allpromociones.succes.map((promocion,index)=>(
+          {allpromociones?.succes?.map((promocion,index)=>(
             <option key={index} value={promocion.id}>{promocion.nombre}</option>
           ))}
  
