@@ -56,8 +56,6 @@ export const useEcomerce = () => {
       setProdutCart(JSON.parse(localStorage.getItem('cart') as string))
     }
    
-
-
   return {
     data,
     error,
