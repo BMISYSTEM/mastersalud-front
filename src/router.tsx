@@ -6,7 +6,7 @@ import { PanelLayout } from "./Panel/PanelLayout";
 import { HomeLayout } from './Panel/home/HomeLayout';
 import { EcomerceLayout } from "./home/Ecomerce/EcomerceLayout";
 import { PanelEcomerceLayout } from "./Panel/e-comerce/PanelEcomerceLayout";
-import { ProductosLayout } from "./Panel/e-comerce/Productos/productosLayout";
+import { ProductosLayout } from "./Panel/e-comerce/Productos/ProductosLayout";
 import { MarcasLayout } from "./Panel/e-comerce/Marcas/MarcasLayout";
 import { PromocionesLayout } from "./Panel/e-comerce/Promociones/PromocionesLayout";
 import { PedidosLayout } from "./Panel/e-comerce/Pedidos/PedidosLayout";

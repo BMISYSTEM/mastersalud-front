@@ -35,7 +35,7 @@ const usePromociones = () => {
     }
 
     const deletePromo = async(datos:{id:number}) =>{
-      const {data} = await clienteAxios.post('/api/promocion/delete',datos,{
+      const {} = await clienteAxios.post('/api/promocion/delete',datos,{
         headers:{
           Authorization:`Bearer ${token}`
         }
@@ -57,7 +57,7 @@ const usePromociones = () => {
 
     const updatePromociones = async(datos:updateProducto) =>
     {
-      const {data} = await clienteAxios.post('api/promocion/update',datos,{
+      const {} = await clienteAxios.post('api/promocion/update',datos,{
         headers:{
           Authorization:`Bearer ${token}`
         }

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import usePromociones from "../usePromociones/usePromociones";
 import { toast } from "react-toastify";
-import ModalUpdateMarca from "../../Marcas/components/ModalUpdateMarca";
 import { ModalUpdatePromociones } from "./ModalUpdatePromociones";
 import ReactModal from "react-modal";
 

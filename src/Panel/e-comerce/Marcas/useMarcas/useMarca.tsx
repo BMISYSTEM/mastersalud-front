@@ -13,7 +13,7 @@ const useMarca = () => {
         }
     }))
 
-    const createMarca = async(datos,setRespuesta) =>{
+    const createMarca = async(datos:any,setRespuesta:any) =>{
         
         try {
             const {data} = await clienteAxios.post('/api/marcas/create',datos,{

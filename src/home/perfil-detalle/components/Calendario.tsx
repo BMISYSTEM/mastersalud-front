@@ -15,9 +15,9 @@ export const Calendario = ({diaselect}:props) => {
     /**
      * Fecha actual
      */
-    const [fecha,setFecha] = useState(new Date());
-    const [ano,setAno]= useState(fecha.getFullYear());
-    const [dia,setDia] = useState(fecha.getDate());
+    const [fecha] = useState(new Date());
+    const [ano]= useState(fecha.getFullYear());
+    const [dia] = useState(fecha.getDate());
 
     /** 
          * Arreglos para el calendario

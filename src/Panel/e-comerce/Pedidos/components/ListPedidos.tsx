@@ -1,5 +1,4 @@
 import React from "react";
-import { Producto } from '../../../../home/Ecomerce/components/Producto';
 
 interface pedidos{
     id:number,

@@ -9,16 +9,20 @@ export const Producto= ({succes}:Productos) => {
     const addCar = (producto:Succe) =>
     {
         // Obtener el carrito del localStorage (si existe)
-        let cart = localStorage.getItem("cart") 
+        let cart:Succe[] = localStorage.getItem("cart") 
                     ? JSON.parse(localStorage.getItem("cart") as string) 
                     : [];
         // Agregar el producto al array del carrito
         const newProduct = {...producto,cantidad:1}
-        cart.push(newProduct);
-        // Guardar el carrito actualizado en el localStorage
-        localStorage.setItem("cart", JSON.stringify(cart));
-        toast.success('Producto agregado al carrito')
-        actualizaCart()
+        if(cart.find((prod)=>prod.id === producto.id )){
+            toast.warning('El producto ya existe en el carrito')
+        }else{
+            cart.push(newProduct);
+            // Guardar el carrito actualizado en el localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+            toast.success('Producto agregado al carrito')
+            actualizaCart()
+        }
     }
     
   return (

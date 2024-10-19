@@ -10,7 +10,7 @@ interface MarcaFormProps {
   onSubmit: (marcas: Marca) => void;
 }
 
-export const ModalNewMarca: React.FC<MarcaFormProps> = ({ onSubmit }) => {
+export const ModalNewMarca: React.FC<MarcaFormProps> = ({  }) => {
   const {createMarca,mutate} = useMarca()
   const [respuesta,setRespuesta] = useState(null)
   const [name, setName] = useState("");

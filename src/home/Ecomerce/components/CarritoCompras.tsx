@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import React, { ReactEventHandler, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useEcomerce } from "../hooks/useEcomerce";
 import ReactModal from "react-modal";
 import { v4 } from "uuid";
@@ -49,7 +49,6 @@ export const CarritoCompras = () => {
       }
 
       // Actualizar el carrito en el localStorage
-      console.log(productCarr);
       localStorage.setItem("cart", JSON.stringify(productCarr));
       actualizaCart();
     }
@@ -95,8 +94,7 @@ const pagarahora = async(e:React.FormEvent) =>{
       toast.warning('Debes completar toda la informacion solicitada')
     } 
   }
-
-  const guardarCompra = async(datos:any) =>{
+  const guardarCompra = async(datos:any) =>{2
     const {data} = await clienteAxios.post('/api/compras/new',datos,{
       headers:{
         Authorization:`Bearer ${token}`
@@ -109,7 +107,7 @@ const pagarahora = async(e:React.FormEvent) =>{
   }, []);
   return (
     <div
-      className={`  bg-slate-100   animate__animated  animate__fadeInRight absolute w-96 h-full  ml-[75%] border-l flex flex-col gap-2 p-2`}
+      className={`  bg-slate-100 h-auto  animate__animated  animate__fadeInRight absolute w-96  ml-[75%] border-l flex flex-col gap-2 p-2`}
     >
       <h2 className="text-lg font-bold  text-sky-500">Carrito de compras</h2>
       {productCarr?.length > 0 ? (

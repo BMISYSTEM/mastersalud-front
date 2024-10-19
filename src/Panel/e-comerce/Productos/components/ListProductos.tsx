@@ -1,10 +1,29 @@
 import ReactModal from "react-modal";
-import { Productos, Succe } from "../productosLayout";
+
 import { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import useProductos from "../hooks/useProductos";
 import { toast } from "react-toastify";
-import { Producto } from "../../../../home/Ecomerce/components/Producto";
+
+export interface Productos {
+  succes: Succe[];
+}
+
+export interface Succe {
+  id:               number;
+  nombre:           string;
+  id_marca:         number;
+  nombre_marca:     string;
+  id_promocion:     number;
+  nombre_promocion: string;
+  precio:           number;
+  estado:           string;
+  porcentaje:       number;
+  imagen1:          string;
+  imagen2:          string;
+  imagen3:          string;
+  imagen4:          string;
+}
 
 const ListProductos = ({ succes }: Productos) => {
   const baseUrl = import.meta.env.VITE_URL_API;

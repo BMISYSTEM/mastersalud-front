@@ -26,7 +26,7 @@ export const ListMarcas = ({ succes }: Marcas) => {
     };
     try {
       setDelete(true);
-      const { data } = await clienteAxios.post("/api/marcas/delete", datos, {
+      const {  } = await clienteAxios.post("/api/marcas/delete", datos, {
         headers: {
           Authorization: `Bearer 2|sSrE8JpdOfrbrSppFU9CJVqYL6ECpxpiqfhufSPd60257f02`,
         },

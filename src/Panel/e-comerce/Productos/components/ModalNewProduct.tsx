@@ -7,14 +7,6 @@ import usePromociones from "../../Promociones/usePromociones/usePromociones";
 import { Marcas } from "../../Marcas/MarcasLayout";
 import { Promociones } from "../../Promociones/PromocionesLayout";
 
-interface Product {
-  id: number;
-  name: string;
-  brand: string;
-  price: number;
-  promotion: string;
-  status: string;
-}
 
 export const ModalNewProduct = () => {
   const {data:allMarca} = useMarca()

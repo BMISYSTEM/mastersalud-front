@@ -2,11 +2,6 @@ import React, { useState } from 'react'
 import usePromociones from '../usePromociones/usePromociones';
 import { toast } from 'react-toastify';
 
-interface promocion{
-    nombre:string;
-    porcentaje:number;
-    activo:number
-}
 
 
 
