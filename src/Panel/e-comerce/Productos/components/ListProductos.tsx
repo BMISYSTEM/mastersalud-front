@@ -67,7 +67,7 @@ const ListProductos = ({ succes }: Productos) => {
   return (
     <div>
       <div className="w-full flex flex-row gap-2 items-center justify-between">
-        <h2 className="text-2xl font-semibold">Lista de Promociones</h2>
+        <h2 className="text-2xl font-semibold">Lista de Productos</h2>
         {/* leyendas */}
         <div className="w-auto flex flex-col items-start border p-2 gap-1">
           <p className="text-lg font-bold">Leyendas</p>

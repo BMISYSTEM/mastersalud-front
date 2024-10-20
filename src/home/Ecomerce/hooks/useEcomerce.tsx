@@ -42,7 +42,6 @@ export const useEcomerce = () => {
     if(TotalPago)
     {
         valPago = TotalPago?.reduce((number,val)=>number + val ,0)
-
     }
 
 

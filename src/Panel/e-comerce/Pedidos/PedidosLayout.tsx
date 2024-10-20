@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { ListPedidos } from "./components/ListPedidos";
+import { usePedidos } from "./hooks/usePedidos";
+import ReactModal from "react-modal";
 interface pedidos{
     id:number,
     nombre:string,
@@ -10,14 +12,24 @@ interface pedidos{
     valor:number,
     estado:string
 }
+import spiner from './assets/spiner.svg'
+import { Pedidos } from "./interface/interfacePedidos";
 export const PedidosLayout = () => {
-    const [pedidos] = useState<pedidos[]>([
-      { id: 1, nombre: 'julio',estado:'1',apellido:'apellido1',id_producto:1,nombre_producto:'aspirina',telefono:'3184482848',valor:50000  },
-      { id: 2, nombre: 'carlos',estado:'1',apellido:'apellido1',id_producto:1,nombre_producto:'aspirina',telefono:'3184482848',valor:50000 },
-    ]);
+  const {index,isLoading} = usePedidos()
+    const pedidos:Pedidos = index?.data;
   return (
     <>
-        <ListPedidos pedidos={pedidos}/>
+        {isLoading ? 
+         null
+        : <ListPedidos succes={pedidos.succes}/>
+        }
+        <ReactModal
+        isOpen={isLoading}
+        className="fixed inset-0 flex items-center justify-center "
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+         <img src={spiner} alt="" className="w-10 h-10"/>
+      </ReactModal>
     </>
   )
 }

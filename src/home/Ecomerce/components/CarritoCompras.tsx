@@ -34,8 +34,6 @@ export const CarritoCompras = () => {
     const productIndex = productCarr.findIndex(
       (product) => Number(product.id) === Number(id)
     );
-    console.log(productIndex);
-    console.log(productCarr[productIndex].cantidad);
     if (productIndex !== -1) {
       // Incrementar o decrementar según la acción
       if (action === "incrementar") {
@@ -82,12 +80,13 @@ const pagarahora = async(e:React.FormEvent) =>{
             apellido:apellido,
             email:email,
             ciudad:ciudad,
-            direccion:direccion
+            direccion:direccion,
+            telefono:telefono
           }
           toast.promise(guardarCompra(dataCompra),{
             error:'Se genero un error al realizar tu compra comunicate con soporte',
             pending:'Almacenando compra',
-            success:'Compra registrada verifica el email proporcionado'
+            success:'Se registro el movimiento de forma correcta, en la bandeja de tu correo tendras la factura, con el codigo de la factura podras consultar el estado de tu pedido'
           })
         })
     }else{
@@ -95,12 +94,11 @@ const pagarahora = async(e:React.FormEvent) =>{
     } 
   }
   const guardarCompra = async(datos:any) =>{2
-    const {data} = await clienteAxios.post('/api/compras/new',datos,{
+    const {} = await clienteAxios.post('/api/compras/new',datos,{
       headers:{
         Authorization:`Bearer ${token}`
       }
     })
-    console.log(data)
   }
   useEffect(() => {
     setProdutCart(JSON.parse(localStorage.getItem("cart") as string));
