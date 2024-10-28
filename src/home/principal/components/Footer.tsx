@@ -6,8 +6,8 @@ import instagram from '../assets/instagramcolor.png'
 import youtube from '../assets/youtube.png'
 export const Footer = () => {
   return (
-    <footer className="w-full h-full bg-[#F7F7F7] flex flex-col gap-1 p-2">
-      <section className="w-full h-full flex flex-row gap-1">
+    <footer className="w-full h-full bg-[#F7F7F7] flex flex-col gap-1 p-2 overflow-hidden">
+      <section className="w-full h-full flex md:flex-row flex-col  gap-1">
         {/* logo */}
         <div className="w-full h-full  flex items-center">
           <img src={logo} alt="" />

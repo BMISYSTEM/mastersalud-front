@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Helmet from 'react-helmet';
 import banner from '../assets/Polygon 1.png'
@@ -10,60 +9,17 @@ import doctor from '../assets/iconoDoctor.png'
 import pointer from '../assets/iconoPointer.png'
 import flecha from '../assets/flecha.png'
 import lupa from '../assets/lupa.png'
-import logo from '../../../assets/logo.png'
+import { Menu } from './Menu';
 export const Header: React.FC = () => {
 
-
-//   const detalledoc = () => {
-//     // Verifica si startViewTransition está disponible
-//     if ('startViewTransition' in document) {
-//       document.startViewTransition(() => {
-//         // Utiliza flushSync para asegurar la sincronización antes de la navegación
-//         flushSync(() => {
-//           navigate('/doc-detalle');
-//         });
-//       });
-//     } else {
-//       // Si no está disponible, solo navega directamente
-//       navigate('/doc-detalle');
-//     }
-//   };
-
   return (
-    <header className='relative  w-full h-screen bg-[#F7F7F7]'>
+    <header className='relative  w-full h-screen bg-[#F7F7F7] overflow-hidden flex justify-center md:justify-start'>
         <Helmet>
             <title>
                 MasterSalud - Home
             </title>
         </Helmet>
-        
-        <nav className='absolute border-b-2 w-full flex flex-row gap-5 justify-between p-2 items-center z-50'>
-            {/* logo  */}
-            <div className='w-1/3 flex flex-row justify-start '>
-                <img src={logo} alt="" className='w-24' />
-            </div>
-
-            <div className='w-full flex flex-row justify-end gap-2'>
-                <Link to={'/'}>
-                    <p className='p-2 text-white'>Nosotros</p>
-                </Link>
-                <Link to={'/'}>
-                    <p className='p-2 text-white'>Especialistas</p>
-                </Link>
-                <Link to={'/'}>
-                    <p className='p-2 text-white'>Centros Medicos</p>
-                </Link>
-                <Link to={'/e-comerce'}>
-                    <p className='p-2 text-white'>E-Comerce</p>
-                </Link>
-                <Link to={'/'}>
-                    <p className='p-2 text-white'>Contactanos</p>
-                </Link>
-                <Link to={'/login'}>
-                    <p className='border-2 p-2 border-sky-500 rounded-xl bg-[#1C76ED]/40 hover:bg-[#1C76ED]/60 transition-all backdrop-blur-xl font-bold text-white'>Iniciar Session</p>
-                </Link>
-            </div>
-        </nav>
+        <Menu/>
         <div className='absolute w-42 mt-32'>
             <img src={circulo} alt="" />
         </div>
@@ -71,9 +27,9 @@ export const Header: React.FC = () => {
             <img src={circulo} alt="" className='object-contain p-2 w-full h-full' />
         </div>
         {/* buscador */}
-        <section className=' absolute w-[40rem] h-[25rem] mt-[15%] ml-[10%] rounded-lg border-2 bg-[#1C76ED]/40 backdrop-blur-xl  border-sky-600 z-50 flex flex-col gap-3 items-center'>
+        <section className=' absolute md:w-[40rem] w-[95%] h-[25rem] md:mt-[15%] mt-[40%] md:ml-[10%] rounded-lg border-2 bg-[#1C76ED]/40 backdrop-blur-xl  border-sky-600 z-40 flex flex-col gap-3 items-center'>
                 <p className='text-2xl font-bold  text-center p-2 text-white'>Encuentra a tu especialista</p>
-                <div className='w-1/2 flex flex-row gap-2 justify-between'>
+                <div className='md:w-1/2 w-5/6 flex flex-row gap-2 justify-between'>
                     <button className='p-2 bg-slate-200 font-bold rounded-sm flex flex-row gap-2 hover:bg-slate-400 transition-all'>
                         <img src={casa} alt="" />
                         <p>Presencial</p>
@@ -83,7 +39,7 @@ export const Header: React.FC = () => {
                         <p>Virtual</p>
                     </button>
                 </div>
-                <div className='w-2/3 h-full flex flex-col justify-center gap-5 '>
+                <div className='md:w-2/3 w-[95%] h-full flex flex-col justify-center gap-5 '>
                     <div className='w-full p-2 bg-slate-200 rounded-sm flex flex-row justify-between cursor-pointer'>
                         <img src={doctor} alt="" />
                         <p>Especialidad, enfermedad o nombre</p>
@@ -103,10 +59,9 @@ export const Header: React.FC = () => {
                 </div>
         </section>
         {/* imagen de fondo */}
-        <div className='relative w-full h-full flex justify-end '>
-            <img src={banner} alt="Imagen de doctor atendiendo una cirugia" className='h-full w-[70%] ' />
-            <div className=' absolute w-full h-full '>
-            </div> 
+        <div className='relative w-full h-full flex justify-end z-0 '>
+            <img src={banner} alt="Imagen de doctor atendiendo una cirugia" className=' object-cover md:object-fill h-full md:w-[70%] w-full  ' />
+           
         </div>
     </header>
   );

@@ -2,12 +2,13 @@ import { Link, Outlet } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import usePanel from "./Hooks/usePanel";
+import { User } from './interface/userInterface';
 export const PanelLayout = () => {
-  const {} = usePanel({middleware:'auth',url:'/panel/home'})
-
+  const {data} = usePanel({middleware:'auth',url:'/panel/home'})
+  const user:User = data?.data
   return (
     <div className="flex h-screen overflow-hidden">
-      <Sidebar />
+      <Sidebar rol={user?.rol}/>
       <div className="flex-1">
         <Header />
         <main className=" h-[90%]  gap-6 w-full overflow-auto ">
@@ -18,8 +19,10 @@ export const PanelLayout = () => {
     </div>
   );
 };
-
-const Sidebar: React.FC = () => {
+interface propsSidebar{
+  rol:number
+}
+const Sidebar = ({rol = 0}:propsSidebar) => {
   return (
     <aside className="w-20 bg-blue-700 min-h-screen flex flex-col items-center py-6">
       <div className="space-y-6 w-20 p-2 flex flex-col ">
@@ -40,11 +43,15 @@ const Sidebar: React.FC = () => {
           </svg>
         </Link >
         {/* ecomerce */}
-        <Link to={'/panel/ecomerce/productos'} className="bg-blue-500 p-2 rounded-lg text-white flex items-center justify-center ">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-          </svg>
-        </Link>
+        {rol === 1 ? 
+          <Link to={'/panel/ecomerce/productos'} className="bg-blue-500 p-2 rounded-lg text-white flex items-center justify-center ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+            </svg>
+          </Link>
+          :
+          null   
+        }
         <div className="bg-blue-500 p-2 rounded-lg text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"

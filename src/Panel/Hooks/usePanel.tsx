@@ -13,25 +13,20 @@ const usePanel = ({middleware,url}:props) => {
     const navigate = useNavigate();
        //revalidar la informacion del usuario logeado
 
-       const {data:user,error} = useSWR('/api/user',() => 
+       const {data,error} = useSWR('/api/user',() => 
         clienteAxios('/api/users',{
             headers:{
                 Authorization: `Bearer ${token}`
             }
-        })
-        .then(res => res.data)
-        .catch(error => {
-            throw Error(error?.response?.data?.errors)
-        })
-        );
-
+        }))
+    
 
 
 
     useEffect(()=>{
-        if(middleware === 'guest' && url && user )
+        if(middleware === 'guest' && url && data )
         {
-            console.log(url,user)
+            console.log(url,data)
             navigate(url);
         }
         //si el usuario no esta autenticado lo manda a iniciar session 
@@ -40,10 +35,10 @@ const usePanel = ({middleware,url}:props) => {
             console.log(error)
             navigate('/')
         }
-    },[user,error])
+    },[data,error])
 
   return {
-    user,
+    data,
     error
   }
 }

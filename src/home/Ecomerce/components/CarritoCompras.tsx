@@ -105,7 +105,7 @@ const pagarahora = async(e:React.FormEvent) =>{
   }, []);
   return (
     <div
-      className={`  bg-slate-100 h-auto  animate__animated  animate__fadeInRight absolute w-96  ml-[75%] border-l flex flex-col gap-2 p-2`}
+      className={`  bg-slate-100 h-auto  animate__animated  animate__fadeInRight absolute w-96 z-40 md:z-0 md:mt-0 mt-32 overflow-auto  md:ml-[75%] border-l flex flex-col gap-2 p-2`}
     >
       <h2 className="text-lg font-bold  text-sky-500">Carrito de compras</h2>
       {productCarr?.length > 0 ? (
@@ -188,7 +188,7 @@ const pagarahora = async(e:React.FormEvent) =>{
       )}
       <ReactModal isOpen={newCompra}
         className="fixed inset-0 flex items-center justify-center p-4"
-        overlayClassName="animate__animated animate__fadeIn fixed inset-0 bg-black bg-opacity-50"
+        overlayClassName="animate__animated animate__fadeIn fixed inset-0 bg-black bg-opacity-50 z-50"
       >
         <section className="animate__animated animate__fadeIn w-96 h-full bg-white rounded-sm overflow-auto shadow-xl">
           <div className="w-full flex flex-row justify-end p-2">

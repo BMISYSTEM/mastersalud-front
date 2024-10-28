@@ -46,29 +46,29 @@ export const Main = () => {
         }
       };
   return (
-    <main className='w-full h-full   bg-[#F7F7F7] flex flex-col gap-10'>
+    <main className='w-full h-full   bg-[#F7F7F7] flex flex-col gap-10 '>
       {/* como pedir tu cita  */}
       <section className=" animateViewPort relative w-full justify-center p-5 flex flex-col gap-5">
-        <h1 className="text-5xl font-bold text-slate-900 z-50">Como pedir tu cita</h1> 
-        <section className="flex flex-row gap-2 justify-center w-full h-[24rem] z-50 ">
-            <div className="w-96 h-auto  flex flex-col gap-2">
-              <img src={doctores} alt="" className='w-full h-96' />
+        <h1 className="md:text-5xl text-3xl font-bold text-slate-900 z-40">Como pedir tu cita</h1> 
+        <section className="flex flex-row gap-2 justify-center w-full h-[24rem] z-40 ">
+            <div className="md:w-96 w-60 h-auto  flex flex-col gap-2">
+              <img src={doctores} alt="" className='w-full md:h-96 h-40' />
               <p className='text-center'>Busca los mejores doctores online</p>
               <div className='w-full border-t-2 border-black'></div>
             </div>
             <div className='w-20 h-full  flex flex-col justify-center items-center'>
               <img src={flecha} alt="" />
             </div>
-            <div className="w-96 h-auto  flex flex-col gap-2">
-              <img src={curriculum} alt="" className='w-full h-96' />
+            <div className="md:w-96 w-60 h-auto  flex flex-col gap-2">
+              <img src={curriculum} alt="" className='w-full md:h-96 h-40' />
               <p className='text-center'>Ver el perfil de tu especialista</p>
               <div className='w-full border-t-2 border-black'></div>
             </div>
             <div className='w-20 h-full  flex flex-col justify-center items-center'>
               <img src={flecha} alt="" />
             </div>
-            <div className="w-96 h-auto  flex flex-col gap-2">
-              <img src={calendario} alt="" className='w-full h-96' />
+            <div className="md:w-96 w-60 h-auto  flex flex-col gap-2">
+              <img src={calendario} alt="" className='w-full md:h-96 h-40' />
               <p className='text-center'>Obtén una cita con el doctor de manera instantánea</p>
               <div className='w-full border-t-2 border-black'></div>
             </div>
@@ -78,18 +78,18 @@ export const Main = () => {
         </div>
       </section>
       {/* especialidades */}
-      <section className='relative w-full justify-center  flex flex-col gap-5 mt-24 '>
+      <section className='relative w-full justify-center  flex flex-col md:gap-5 md:mt-24 '>
         <div className=' absolute w-full h-full blur-lg'>
           <img src={medicos} alt="" className='object-cover w-full h-full'/>
         </div>
         <div className=' absolute w-full h-full bg-black/1'>
         </div>
-        <div className='p-5 z-50 h-full flex flex-col gap-5'>
-          <h2 className='text-5xl font-bold mt-10 z-50 ml-10'>Explora por especialistas </h2>
+        <div className='p-5 z-40 h-full flex flex-col gap-5'>
+          <h2 className='text-5xl font-bold md:mt-10 z-40 ml-10'>Explora por especialistas </h2>
           {/* contenedor de especialidades */}
-          <div className='  w-full flex flex-row gap-10 z-50 '>
+          <div className='  w-full flex md:flex-row flex-col gap-10 z-40 '>
             {/* contenedor 1  */}
-            <div className='animatexView w-full flex flex-col gap-2'>
+            <div className=' animateViewPort w-full flex flex-col gap-2'>
               <div className='w-full flex flex-row gap-2'>
                 <div className='w-full h-72 bg-[#FFF6F6]/50 backdrop-blur-xl border-sky-500 border-2 rounded-lg flex flex-col justify-center items-center gap-5'>
                   <img src={diente} alt="" />
@@ -109,7 +109,7 @@ export const Main = () => {
               </div>
             </div>
             {/* contenedor 2  */}
-            <div className='animatexView w-full flex flex-col gap-2'>
+            <div className=' animateViewPort w-full h-full flex flex-col gap-2'>
               <div className='w-full flex flex-row gap-2'>
                 <div className='w-full h-72 bg-[#FFF6F6]/50 backdrop-blur-xl border-sky-500 border-2 rounded-lg flex flex-col justify-center items-center gap-5'>
                   <img src={urologo} alt="" />
@@ -131,7 +131,7 @@ export const Main = () => {
           </div>  
           <div className='w-full flex flex-row gap-2 justify-center h-10'>
             {/* mandar a pagina con listado de doctores all */}
-            <button className='w-1/2 h-10 bg-[#FFF6F6]/50 backdrop-blur-xl border-sky-500 border-2 rounded-lg flex flex-row gap-2 justify-center items-center p-2'>
+            <button className='md:w-1/2 w-full h-10 bg-[#FFF6F6]/50 backdrop-blur-xl border-sky-500 border-2 rounded-lg flex flex-row gap-2 justify-center items-center p-2'>
               <p className='text-2xl font-bold text-sky-700'>Ver todas las categorias</p>
               <img src={flechaazul} alt="" className='w-10' />
             </button>
@@ -140,12 +140,12 @@ export const Main = () => {
         
       </section>
       {/* medicos */}
-      <section id={'medicos'} className='relative w-full  h-full justify-center  flex flex-col gap-5 mt-10 '>
+      <section id={'medicos'} className='relative w-full  h-full justify-center  flex flex-col gap-5 md:mt-10 '>
       <div className=' absolute w-full h-full blur-lg'>
           <img src={fondoDoctor} alt="" className='object-cover w-full h-full'/>
         </div>
-        <h3 className='text-5xl font-bold mt-10 z-50 ml-10'>Especialistas mejor valorados</h3>
-        <div className='w-full flex flex-wrap p-5 z-50 gap-5 justify-center'>
+        <h3 className='text-5xl font-bold md:mt-10 z-40 ml-10'>Especialistas mejor valorados</h3>
+        <div className='w-full flex flex-wrap p-5 z-40 gap-5 justify-center'>
           {/* tarjeta */}
           <button className='animateyView w-72 h-[30rem] bg-[#2899CD] rounded-lg flex flex-col hover:scale-110 transition-all' onClick={()=>detalledoc('doc1')} >
             <div className='w-full h-2/3'>
@@ -233,14 +233,14 @@ export const Main = () => {
       </section>
       <section className='animatexView relative w-full h-screen justify-center  flex flex-row gap-5 mt-24 bg-gradient-to-r from-[#A0DCF0] to-[#EAFAFF] overflow-hidden '>
         {/* foto doctora */}
-        <div className='  w-full h-full'>
-          <img src={fondoCelular} alt="" className=' object-contain w-full h-full'/>
+        <div className='  md:w-full h-full md:flex hidden'>
+          <img src={fondoCelular} alt="" className=' object-contain w-full h-full md:flex hidden'/>
         </div>
         {/* foto telefono */}
         <div className=' w-full flex flex-col gap-5'>
           <h4 className='text-5xl font-bold text-slate-700 mt-10 '>Pronto nuestra App</h4>
           <div className='w-full h-full flex justify-end '>
-            <img src={celular} alt="" className=' object-contain h-auto   w-5/6' />
+            <img src={celular} alt="" className=' md:object-contain  h-auto   md:w-5/6 w-full' />
           </div>
         </div>
       </section>

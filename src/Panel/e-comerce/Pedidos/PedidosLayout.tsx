@@ -1,17 +1,7 @@
-import { useState } from "react";
 import { ListPedidos } from "./components/ListPedidos";
 import { usePedidos } from "./hooks/usePedidos";
 import ReactModal from "react-modal";
-interface pedidos{
-    id:number,
-    nombre:string,
-    apellido:string,
-    telefono:string,
-    id_producto:number,
-    nombre_producto:string,
-    valor:number,
-    estado:string
-}
+
 import spiner from './assets/spiner.svg'
 import { Pedidos } from "./interface/interfacePedidos";
 export const PedidosLayout = () => {
