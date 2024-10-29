@@ -1,4 +1,4 @@
-type tipoCampo= 'text'|'number'|'tel'|'password'|'email'
+type tipoCampo= 'text'|'number'|'tel'|'password'|'email'|'time'
 interface props{
     nombre:string;
     type:tipoCampo;

@@ -2,10 +2,12 @@ import ReactModal from "react-modal";
 import { MotivosList } from "./components/MotivosList";
 import { useState } from "react";
 import Horarios from "./components/Horarios";
+import { InformacionPersonal } from "./components/InformacionPersonal";
 
 export const HomeLayout = () => {
   const [newMotivo,setNewMotivo] = useState(false)
   const [horarios,setHorarios] = useState(false)
+  const [informacion,setInformacion] = useState(false)
 
   return (
     <div className="p-6 flex flex-col gap-4 space-y-6 w-full ">
@@ -15,6 +17,9 @@ export const HomeLayout = () => {
         </button>
         <button onClick={()=>setHorarios(true)} className="w-auto  bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-800">
           <h2 className="text-sm font-bold">Definir Horarios de atencion</h2>
+        </button>
+        <button onClick={()=>setInformacion(true)} className="w-auto  bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-800">
+          <h2 className="text-sm font-bold">Informacion Personal</h2>
         </button>
       </div>
       {/* Primera fila: Resumen de información */}
@@ -88,7 +93,10 @@ export const HomeLayout = () => {
         <MotivosList  setNewMotivo={setNewMotivo}/>
       </ReactModal>
       <ReactModal isOpen={horarios} className={'w-full h-full flex justify-center items-center backdrop-blur-lg bg-sky-500/20'}>
-        <Horarios />
+        <Horarios setHorario={setHorarios}/>
+      </ReactModal>
+      <ReactModal isOpen={informacion} className={'w-full h-full flex justify-center items-center backdrop-blur-lg bg-sky-500/20'}>
+        <InformacionPersonal setInformacion={setInformacion}/>
       </ReactModal>
     </div>
   );
