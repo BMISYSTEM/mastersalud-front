@@ -78,14 +78,7 @@ const Header: React.FC = () => {
     <header className="flex items-center justify-between p-4 bg-white shadow">
       <div className="text-xl font-bold text-gray-700">Dashboard</div>
       <div className="flex items-center space-x-4">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-400"
-        />
-        <button className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
-          Sign Up
-        </button>
+  
       </div>
     </header>
   );
