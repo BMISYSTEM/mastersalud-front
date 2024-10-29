@@ -14,7 +14,6 @@ import urologo from '../assets/urologo.png'
 import ortopedia from '../assets/ortopedia.png'
 import ginecologo from '../assets/ginecologo.png'
 // -------------------------------------------------------------
-import doc1 from '../assets/doctora1.png'
 import paloma from '../assets/paloma.png'
 import instagram from '../assets/instagram.png'
 import facebook from '../assets/facebook.png'
@@ -70,7 +69,7 @@ export const Main = () => {
 
   const {setvieTransitionName} = useContext(context)
   const navigate = useNavigate()
-  const detalledoc = (name:string) => {
+  const detalledoc = (name:string,id:number) => {
         // Verifica si startViewTransition está disponible
         if ('startViewTransition' in document) {
           document.startViewTransition(() => {
@@ -78,12 +77,12 @@ export const Main = () => {
             
             flushSync(async () => {
               setvieTransitionName(name)
-              navigate('/doc-detalle');
+              navigate(`/doc-detalle/${id}`);
             });
           });
         } else {
           // Si no está disponible, solo navega directamente
-          navigate('/doc-detalle');
+          navigate(`/doc-detalle/${id}`);
         }
       };
   const {data,isLoading} = useSWR('/api/medic/all',()=>
@@ -196,7 +195,7 @@ export const Main = () => {
           <h3>Cargando informacion...</h3>  
         :
             medico.succes.map((medico,index)=>(
-              <button key={index} className='animateyView w-72 h-[30rem] bg-[#2899CD] rounded-lg flex flex-col hover:scale-110 transition-all' onClick={()=>detalledoc('doc1')} >
+              <button key={index} className='animateyView w-72 h-[30rem] bg-[#2899CD] rounded-lg flex flex-col hover:scale-110 transition-all' onClick={()=>detalledoc('doc1',medico.id)} >
                 <div className='w-full h-2/3'>
                   <img key={index} src={`${baseUrl}/storage/${medico?.fotoperfil}`} alt="" className='object-contain w-full h-64' style={{viewTransitionName:'doc1'}}  />
                 </div>

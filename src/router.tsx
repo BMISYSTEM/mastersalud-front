@@ -20,7 +20,7 @@ export const router = createBrowserRouter(
             element:<ViewPrincipalLayout/>
         },
         {
-            path:'/doc-detalle',
+            path:'/doc-detalle/:id',
             element:<PerfilDetalleLayout/>
         },
         {

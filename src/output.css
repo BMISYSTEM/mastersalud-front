@@ -891,6 +891,14 @@ video {
   width: 100%;
 }
 
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
 .min-w-\[200px\] {
   min-width: 200px;
 }
@@ -2008,6 +2016,10 @@ video {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-4\/6 {
+    width: 66.666667%;
   }
 
   .md\:flex-row {
