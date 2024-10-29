@@ -1,14 +1,19 @@
 import ReactModal from "react-modal";
 import { MotivosList } from "./components/MotivosList";
+import { useState } from "react";
+import Horarios from "./components/Horarios";
 
 export const HomeLayout = () => {
+  const [newMotivo,setNewMotivo] = useState(false)
+  const [horarios,setHorarios] = useState(false)
+
   return (
     <div className="p-6 flex flex-col gap-4 space-y-6 w-full ">
       <div className="flex flex-wrap  w-full gap-2 justify-start  ">
-        <button className="w-auto  bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-800">
+        <button onClick={()=>setNewMotivo(true)} className="w-auto  bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-800">
           <h2 className="text-sm font-bold">Listado de Motivos</h2>
         </button>
-        <button className="w-auto  bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-800">
+        <button onClick={()=>setHorarios(true)} className="w-auto  bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-800">
           <h2 className="text-sm font-bold">Definir Horarios de atencion</h2>
         </button>
       </div>
@@ -79,8 +84,11 @@ export const HomeLayout = () => {
 
 
       {/* modales */}
-      <ReactModal isOpen={true} className={'w-full h-full flex justify-center items-center backdrop-blur-lg bg-sky-500/20'}>
-        <MotivosList/>
+      <ReactModal isOpen={newMotivo} className={'w-full h-full flex justify-center items-center backdrop-blur-lg bg-sky-500/20'}>
+        <MotivosList  setNewMotivo={setNewMotivo}/>
+      </ReactModal>
+      <ReactModal isOpen={horarios} className={'w-full h-full flex justify-center items-center backdrop-blur-lg bg-sky-500/20'}>
+        <Horarios />
       </ReactModal>
     </div>
   );
