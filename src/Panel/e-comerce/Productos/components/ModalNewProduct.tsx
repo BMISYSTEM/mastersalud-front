@@ -17,7 +17,9 @@ export const ModalNewProduct = () => {
   const [price, setPrice] = useState(0);
   const [promotion, setPromotion] = useState("");
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
-
+  const [tecnica,setTecnica] = useState('');
+  const [uso,setUso] = useState('');
+  const [legal,setLegal] = useState('');
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -56,8 +58,13 @@ export const ModalNewProduct = () => {
     }
     
   };
+
+  const handleTexto = (text:string) =>{
+    const textoFormateado  = text.replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: bold;">$1</span>')
+    return textoFormateado
+  }
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4 overflow-auto">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4  flex flex-col gap-2">
       <h2 className="text-2xl font-semibold">Nuevo Producto</h2>
       <div>
         <label className="block text-gray-700">Nombre:</label>
@@ -103,6 +110,16 @@ export const ModalNewProduct = () => {
  
         </select>
       </div>
+      <label htmlFor="" className=" text-slate-500 text-xl">Ficha tecnica</label>
+      <textarea name="" id="" className="border-2 w-full h-32 mt-0 p-2" value={tecnica} onChange={(e)=>setTecnica(e.target.value)}></textarea>
+      <label htmlFor="" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: handleTexto(tecnica) }}/>
+      
+      <label htmlFor="" className=" text-slate-500 text-xl" >Uso adecuado</label>
+      <textarea name="" id="" className="border-2 w-full h-32 mt-0 p-2" value={uso} onChange={(e)=>setUso(e.target.value)}></textarea>
+      <label htmlFor="" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: handleTexto(uso) }}/>
+      <label htmlFor="" className=" text-slate-500 text-xl">Aviso legal</label>
+      <textarea name="" id="" className="border-2 w-full h-32 mt-0 p-2" value={legal} onChange={(e)=>setLegal(e.target.value)}></textarea>
+      <label htmlFor="" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: handleTexto(legal) }}/>
       <div>
         <label className="flex items-center cursor-pointer bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600 transition-colors">
           <PhotoIcon className="w-6 h-6 mr-2" />

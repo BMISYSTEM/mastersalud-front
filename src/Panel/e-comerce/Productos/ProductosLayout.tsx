@@ -46,10 +46,10 @@ export const ProductosLayout = () => {
       <ReactModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-        className="fixed inset-0 flex items-center justify-center p-4"
+        className="fixed inset-0 flex items-center justify-center  overflow-hidden"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
-        <div className="bg-white rounded-lg p-6 max-w-lg w-full">
+        <div className="bg-white rounded-lg p-2 max-w-lg w-full h-full overflow-auto ">
           <ModalNewProduct />
           <button
             className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
