@@ -10,6 +10,7 @@ import { ProductosLayout } from "./Panel/e-comerce/Productos/ProductosLayout";
 import { MarcasLayout } from "./Panel/e-comerce/Marcas/MarcasLayout";
 import { PromocionesLayout } from "./Panel/e-comerce/Promociones/PromocionesLayout";
 import { PedidosLayout } from "./Panel/e-comerce/Pedidos/PedidosLayout";
+import { ProductDetalle } from "./home/Ecomerce/ProductDetalle";
 
 
 
@@ -26,6 +27,10 @@ export const router = createBrowserRouter(
         {
             path:'/e-comerce',
             element:<EcomerceLayout/>
+        },
+        {
+            path:'/e-comerce/:id',
+            element:<ProductDetalle/>
         },
         {
             path:'/login',

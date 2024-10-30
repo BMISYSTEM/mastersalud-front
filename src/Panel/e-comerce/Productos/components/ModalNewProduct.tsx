@@ -28,6 +28,9 @@ export const ModalNewProduct = () => {
     data.append('id_marca',brand);
     data.append('id_promocion',promotion);
     data.append('precio',price.toString());
+    data.append('ficha_tecnica',tecnica);
+    data.append('uso_adecuado',uso);
+    data.append('aviso_legal',legal);
     if (selectedImages) {
       for (let i = 0; i < selectedImages.length; i++) {
         data.append('fotos[]', selectedImages[i]);

@@ -68,6 +68,7 @@ export const EcomerceLayout = () => {
     })
   }
 
+  
 
   return (
     <section className="md:mx-5 relative ">
