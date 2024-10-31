@@ -23,7 +23,7 @@ export const EcomerceLayout = () => {
   const [carrito,setCarrito] = useState(false)
   const { data, isLoading, marcasIndex, promocionIndex } = useEcomerce();
   const  productIndex: Productos = data?.data;
-  let productFilt = productIndex?.succes
+  let productFilt = productIndex?.succes.filter(prod=>prod.estado!== '0')
   const allMarcas: Marcas = marcasIndex?.data;
   const allPromocion: Promocion = promocionIndex?.data;
   const deleteFiltro = (id:number,option:number) =>{
