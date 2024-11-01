@@ -6,6 +6,9 @@ import useMarca from "../../Marcas/useMarcas/useMarca";
 import usePromociones from "../../Promociones/usePromociones/usePromociones";
 import { Marcas } from "../../Marcas/MarcasLayout";
 import { Promociones } from "../../Promociones/PromocionesLayout";
+import useSWR from "swr";
+import { clienteAxios } from "../../../../config/axios";
+import { Caracteristicas } from "../../caracteristicas/Caracteristicas";
 
 
 export const ModalNewProduct = () => {
@@ -14,6 +17,7 @@ export const ModalNewProduct = () => {
   const {createProducto} = useProductos()
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
+  const [caract,setCaract] = useState("");
   const [price, setPrice] = useState(0);
   const [promotion, setPromotion] = useState("");
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
@@ -30,6 +34,7 @@ export const ModalNewProduct = () => {
     data.append('precio',price.toString());
     data.append('ficha_tecnica',tecnica);
     data.append('uso_adecuado',uso);
+    data.append('caracteristica',caract);
     data.append('aviso_legal',legal);
     if (selectedImages) {
       for (let i = 0; i < selectedImages.length; i++) {
@@ -46,8 +51,11 @@ export const ModalNewProduct = () => {
 
   const allmarcas:Marcas = allMarca?.data;
   const allpromociones:Promociones = allPromocion?.data;
+  
+  const {data,isLoading} = useSWR('/api/caracteristicas/all',()=>
+    clienteAxios.get('/api/caracteristica/all'))
 
-
+  const caracteristicas:Caracteristicas = data?.data;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -86,6 +94,19 @@ export const ModalNewProduct = () => {
           {allmarcas?.succes?.map((marcas,index)=>(
             <option key={index} value={marcas.id}>{marcas.nombre}</option>
           ))}
+        </select>
+      </div>
+      <div>
+        <label className="block text-gray-700">Caracteristicas:</label>
+        <select name="" id="" className="py-3 px-2 border w-full" onChange={(e)=>setCaract(e.target.value)}>
+          <option value="" selected={true}>Seleccione una opcion</option>
+          {isLoading ? 
+            <p>Cargando...</p>
+          :
+          caracteristicas?.succes?.map((carat,index)=>(
+            <option key={index} value={carat.id}>{carat.nombre}</option>
+          )) 
+          }
         </select>
       </div>
       <div>

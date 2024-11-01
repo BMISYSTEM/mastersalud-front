@@ -32,6 +32,10 @@ export const ProductDetalle = () => {
             }, 1000);
         }
     }
+    const handleTexto = (text:string) =>{
+      const textoFormateado  = text.replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: bold;">$1</span>')
+      return textoFormateado
+    }
   return (
     <section className="w-full flex flex-col gap-2">
       <div className="w-full flex flex-row p-2 gap-5">
@@ -48,7 +52,7 @@ export const ProductDetalle = () => {
         :
         <div className="w-full h-full flex md:flex-row flex-col gap-2 p-5 justify-center ">
             {/* imagen */}
-            <div className="md:w-1/3 w-full h-[40rem] p-2 border-2 rounded-xl border-blue-500/50">
+            <div className="md:w-1/3 w-full h-[30rem] p-2 border-2 rounded-xl border-blue-500/50">
               <img src={`${baseUrl}/storage/${productFilt[0].imagen1}`} className="w-full h-full object-contain" />
             </div>
             <div className="md:w-1/2 w-full h-full p-2 flex flex-col gap-3 justify-between">
@@ -70,7 +74,7 @@ export const ProductDetalle = () => {
                   Ficha tecnica
                 </summary>
                 <p className="mt-3 text-gray-600 leading-relaxed">
-                  Este es el contenido adicional que se muestra al hacer clic en "Información detallada". Aquí puedes agregar más texto o incluso otros elementos HTML.
+                <label htmlFor="" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: handleTexto(productFilt[0].ficha_tecnica) }}/>
                 </p>
               </details>
               <details className="bg-gray-100 p-4 rounded-lg shadow-lg transition duration-300 ease-in-out">
@@ -78,7 +82,7 @@ export const ProductDetalle = () => {
                   Uso
                 </summary>
                 <p className="mt-3 text-gray-600 leading-relaxed">
-                  Este es el contenido adicional que se muestra al hacer clic en "Información detallada". Aquí puedes agregar más texto o incluso otros elementos HTML.
+                  <label htmlFor="" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: handleTexto(productFilt[0].uso_adecuado) }}/>
                 </p>
               </details>
               <details className="bg-gray-100 p-4 rounded-lg shadow-lg transition duration-300 ease-in-out">
@@ -86,7 +90,7 @@ export const ProductDetalle = () => {
                   Informacion legal
                 </summary>
                 <p className="mt-3 text-gray-600 leading-relaxed">
-                  Este es el contenido adicional que se muestra al hacer clic en "Información detallada". Aquí puedes agregar más texto o incluso otros elementos HTML.
+                <label htmlFor="" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: handleTexto(productFilt[0].aviso_legal) }}/>
                 </p>
               </details>
             </div>

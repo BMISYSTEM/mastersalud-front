@@ -1,4 +1,4 @@
-import { BuildingStorefrontIcon, FaceSmileIcon, RocketLaunchIcon, TagIcon } from '@heroicons/react/24/outline'
+import { ArrowsPointingInIcon, BuildingStorefrontIcon, FaceSmileIcon, RocketLaunchIcon, TagIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 export const AsideVar = () => {
@@ -27,6 +27,15 @@ export const AsideVar = () => {
         </li>
         <li className="mb-4">
           <Link
+            to="/panel/ecomerce/caracteristicas"
+            className="flex items-center p-2 rounded-lg hover:bg-gray-700 transition-colors"
+          >
+            <ArrowsPointingInIcon className="w-6 h-6 mr-3" />
+            <span>Caracteristicas</span>
+          </Link>
+        </li>
+        <li className="mb-4">
+          <Link
             to="/panel/ecomerce/promociones"
             className="flex items-center p-2 rounded-lg hover:bg-gray-700 transition-colors"
           >
@@ -48,3 +57,9 @@ export const AsideVar = () => {
   </aside>
   )
 }
+
+
+
+ 
+
+

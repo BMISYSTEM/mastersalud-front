@@ -11,6 +11,7 @@ import { MarcasLayout } from "./Panel/e-comerce/Marcas/MarcasLayout";
 import { PromocionesLayout } from "./Panel/e-comerce/Promociones/PromocionesLayout";
 import { PedidosLayout } from "./Panel/e-comerce/Pedidos/PedidosLayout";
 import { ProductDetalle } from "./home/Ecomerce/ProductDetalle";
+import Caracteristicas from "./Panel/e-comerce/caracteristicas/Caracteristicas";
 
 
 
@@ -55,6 +56,10 @@ export const router = createBrowserRouter(
                         {
                             path:'/panel/ecomerce/marcas',
                             element:<MarcasLayout/>
+                        },
+                        {
+                            path:'/panel/ecomerce/caracteristicas',
+                            element:<Caracteristicas/>
                         },
                         {
                             path:'/panel/ecomerce/promociones',

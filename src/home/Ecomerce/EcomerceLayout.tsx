@@ -10,6 +10,7 @@ import 'animate.css'
 import { ToastContainer } from "react-toastify";
 import { CarritoCompras } from "./components/CarritoCompras";
 import { MenuEcomerce } from "./components/MenuEcomerce";
+import { Footer } from "../principal/components/Footer";
 export interface filtrosSelected {
   nombre: string;
   id: number;
@@ -86,7 +87,7 @@ export const EcomerceLayout = () => {
                     setfiltrosSelect={setfiltrosSelect}
                     />
       {/* productos */}
-      <main className="relative w-full h-full   flex flex-row gap-8 md:mt-2 ">
+      <main className="relative w-full h-full   flex flex-row gap-8 md:mt-2  mb-5">
         {carrito ? <CarritoCompras  /> : null }
         {/* filtros */}
         <div className="md:sticky top-0 w-52 h-96 md:flex hidden flex-col gap-2">
@@ -123,6 +124,44 @@ export const EcomerceLayout = () => {
             </svg>
           </button>
           {filtrosOption === 1 ? (
+            <div className="p-1 flex flex-col text-sm">
+              {allMarcas?.succes?.map((marca, index) => (
+                <button
+                  onClick={() =>
+                    setfiltrosSelect([
+                      ...filtrosSelect,
+                      { id: marca.id, nombre: marca.nombre, option: 1 },
+                    ])
+                  }
+                  key={index}
+                  className="border p-2 text-slate-900 font-bold hover:bg-slate-400"
+                >
+                  {marca.nombre}
+                </button>
+              ))}
+            </div>
+          ) : null}
+          <button
+            onClick={() => setfiltrosOption(4)}
+            className="w-full p-2 tewxt-sm flex justify-between items-center bg-sky-500/20 text-sky-800 rounded-sm"
+          >
+            <p>Caracteristicas</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </button>
+          {filtrosOption === 4 ? (
             <div className="p-1 flex flex-col text-sm">
               {allMarcas?.succes?.map((marca, index) => (
                 <button
@@ -260,6 +299,7 @@ export const EcomerceLayout = () => {
           )}
         </div>
       </main>
+      <Footer/>
       <ToastContainer/>
     </section>
   );
