@@ -33,8 +33,11 @@ export const ProductDetalle = () => {
         }
     }
     const handleTexto = (text:string) =>{
-      const textoFormateado  = text.replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: bold;">$1</span>')
-      return textoFormateado
+      if(text)
+      {
+        const textoFormateado  = text.replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: bold;">$1</span>')
+        return textoFormateado
+      }
     }
   return (
     <section className="w-full flex flex-col gap-2">

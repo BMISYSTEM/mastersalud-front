@@ -8,7 +8,7 @@ interface props{
 
 export const Input = ({nombre,type,valueInput,setValue}:props) => {
   return (
-    <div className="w-full max-w-sm min-w-[200px] mb-2">
+    <div className="w-full max-w-full min-w-[200px] mb-2">
       <div className="relative">
         <input value={valueInput} type={type} onChange={(e)=>setValue(e.target.value)} className="peer w-full bg-transparent text-blue-700 font-bold placeholder:text-blue-500 border-blue-300 focus:border-blue-500  text-sm border  rounded-md px-3 py-3 transition duration-300 ease focus:outline-none  hover:border-slate-300 shadow-sm focus:shadow" />
         <label className={`${valueInput !== '' ? '-top-2 left-2.5 scale-90' : 'top-2.5'} absolute cursor-text bg-white px-1 left-2.5  text-blue-500 text-sm transition-all 

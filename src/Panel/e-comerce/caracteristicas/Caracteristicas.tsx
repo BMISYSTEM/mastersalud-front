@@ -56,7 +56,7 @@ const Caracteristicas = () => {
   }
 
 
-  const {data,isLoading,mutate} = useSWR('/api/caracteristicas/all',()=>
+  const {data,isLoading,mutate} = useSWR('/api/caracteristica/all',()=>
     clienteAxios.get('/api/caracteristica/all'))
 
   const caracteristicas:Caracteristicas = data?.data;

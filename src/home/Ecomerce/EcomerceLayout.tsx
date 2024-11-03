@@ -11,10 +11,23 @@ import { ToastContainer } from "react-toastify";
 import { CarritoCompras } from "./components/CarritoCompras";
 import { MenuEcomerce } from "./components/MenuEcomerce";
 import { Footer } from "../principal/components/Footer";
+import useSWR from "swr";
+import { clienteAxios } from "../../config/axios";
 export interface filtrosSelected {
   nombre: string;
   id: number;
   option: number;
+}
+
+export interface Carateristicasinterface {
+  succes: Succe[];
+}
+
+export interface Succe {
+  id:         number;
+  nombre:     string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export const EcomerceLayout = () => {
@@ -32,6 +45,10 @@ export const EcomerceLayout = () => {
     setfiltrosSelect(arrayResult)
   }
 
+
+  const {data:allCaract,isLoading:cargaCarac} = useSWR('/api/caracteristica/all',()=>
+  clienteAxios.get('/api/caracteristica/all'))
+  const caract:Carateristicasinterface = allCaract?.data;
   if(filtrosSelect.length > 0 )
   {
     const marca =filtrosSelect.filter(filter=>filter.option === 1 ) 
@@ -51,6 +68,11 @@ export const EcomerceLayout = () => {
     const descuento =filtrosSelect.filter(filter=>filter.option === 3 )
     if(descuento.length > 0 ){
         productFilt = productFilt.filter(product=>product.id_promocion === descuento[0]?.id )
+    }
+
+    const caracteris =filtrosSelect.filter(filter=>filter.option === 4 )
+    if(caracteris.length > 0 ){
+        productFilt = productFilt.filter(product=>product.id_caract === caracteris[0]?.id )
     }
 
 
@@ -163,18 +185,18 @@ export const EcomerceLayout = () => {
           </button>
           {filtrosOption === 4 ? (
             <div className="p-1 flex flex-col text-sm">
-              {allMarcas?.succes?.map((marca, index) => (
+              {caract?.succes?.map((caract, index) => (
                 <button
                   onClick={() =>
                     setfiltrosSelect([
                       ...filtrosSelect,
-                      { id: marca.id, nombre: marca.nombre, option: 1 },
+                      { id: caract.id, nombre: caract.nombre, option: 4 },
                     ])
                   }
                   key={index}
                   className="border p-2 text-slate-900 font-bold hover:bg-slate-400"
                 >
-                  {marca.nombre}
+                  {caract.nombre}
                 </button>
               ))}
             </div>
