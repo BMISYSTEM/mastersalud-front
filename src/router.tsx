@@ -12,6 +12,7 @@ import { PromocionesLayout } from "./Panel/e-comerce/Promociones/PromocionesLayo
 import { PedidosLayout } from "./Panel/e-comerce/Pedidos/PedidosLayout";
 import { ProductDetalle } from "./home/Ecomerce/ProductDetalle";
 import Caracteristicas from "./Panel/e-comerce/caracteristicas/Caracteristicas";
+import { ConfigLayout } from "./Panel/config/ConfigLayout";
 
 
 
@@ -44,6 +45,10 @@ export const router = createBrowserRouter(
                 {
                     path:'/panel/home',
                     element:<HomeLayout/>
+                },
+                {
+                    path:'/panel/config',
+                    element:<ConfigLayout/>
                 },
                 {
                     path:'/panel/ecomerce',

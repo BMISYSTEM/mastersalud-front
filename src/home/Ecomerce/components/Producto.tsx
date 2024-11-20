@@ -29,7 +29,7 @@ export const Producto= ({succes}:Productos) => {
     
   return (
     <Link to={`/e-comerce/${succes[0].id}`}>
-        <div className="cursor-pointer border hover:border-sky-500 md:w-52 h-[24rem] w-44  bg-white p-2  rounded-xl flex flex-col gap-2 justify-between">
+        <div className="cursor-pointer border hover:border-sky-500 md:w-52 h-[30rem] w-44  bg-white p-2  rounded-xl flex flex-col gap-2 justify-between">
             <div className='w-full h-40  '>
                 <img src={`${baseUrl}/storage/${succes[0].imagen1}`} alt="foto producto" className='w-full h-full object-contain'/>
             </div>

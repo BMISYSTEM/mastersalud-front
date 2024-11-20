@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/logo.png'
+import logo from '../assets/logomastersinfondo.png'
 import { useState } from 'react';
 
 export const Menu = () => {
@@ -14,13 +14,7 @@ export const Menu = () => {
             </div>
             <div className='w-full flex flex-row justify-end gap-2'>
                 <Link to={'/'}>
-                    <p className='p-2 text-white'>Nosotros</p>
-                </Link>
-                <Link to={'/'}>
                     <p className='p-2 text-white'>Especialistas</p>
-                </Link>
-                <Link to={'/'}>
-                    <p className='p-2 text-white'>Centros Medicos</p>
                 </Link>
                 <Link to={'/e-comerce'}>
                     <p className='p-2 text-white'>E-Comerce</p>
@@ -55,15 +49,11 @@ export const Menu = () => {
                 }
             </div>
             <div className='w-full flex flex-col justify-end gap-2'>
-                <Link to={'/'}>
-                    <p className='p-2 text-white'>Nosotros</p>
-                </Link>
+
                 <Link to={'/'}>
                     <p className='p-2 text-white'>Especialistas</p>
                 </Link>
-                <Link to={'/'}>
-                    <p className='p-2 text-white'>Centros Medicos</p>
-                </Link>
+
                 <Link to={'/e-comerce'}>
                     <p className='p-2 text-white'>E-Comerce</p>
                 </Link>

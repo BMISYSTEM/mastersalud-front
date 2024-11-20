@@ -1,9 +1,10 @@
 
 
-import logo from '../assets/logo.png'
+import logo from '../assets/logomastersinfondo.png'
 import facebook from '../assets/facebookazul.png'
 import instagram from '../assets/instagramcolor.png'
 import youtube from '../assets/youtube.png'
+import { Link } from 'react-router-dom'
 export const Footer = () => {
   return (
     <footer className="w-full h-full bg-[#F7F7F7] flex flex-col gap-1 p-2 overflow-hidden">
@@ -15,11 +16,15 @@ export const Footer = () => {
         {/* enlaces */}
         <div className="w-full h-full  flex flex-col gap-2 p-2">
           <h5 className='text-xl font-bold text-slate-950'>Sitios relevantes</h5>
-          <a href="">Inicio</a>
-          <a href="">Inicio</a>
-          <a href="">Inicio</a>
-          <a href="">Inicio</a>
-          <a href="">Inicio</a>
+          <Link to={'/especialistas'}>
+            <p className='p-2 text-blue-500 border-b-2'>Especialistas</p>
+          </Link>
+          <Link to={'/especialistas'}>
+            <p className='p-2 text-blue-500 border-b-2'>E-comerce</p>
+          </Link>
+          <Link to={'/especialistas'}>
+            <p className='p-2 text-blue-500 border-b-2'>Contactenos</p>
+          </Link>
         </div>
         {/* politicas */}
         <div className="w-full h-full  flex flex-col gap-2 p-2">

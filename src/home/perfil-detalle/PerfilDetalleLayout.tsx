@@ -81,6 +81,9 @@ export interface Succe {
   foto7:             null;
   foto8:             null;
   activo:            number;
+  ciudad:           string;
+  presencial:       number;
+  virtual:          number;
 }
 
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/logomastersinfondo.png";
 import { useState } from "react";
 import { filtrosSelected } from "../EcomerceLayout";
 import { Marcas } from "../interfaces/MarcasInterface";
@@ -98,7 +98,7 @@ export const MenuEcomerce = ({
       {/* menu mobil */}
       <nav
         className={`${
-          expands ? "h-screen " : "h-32"
+          expands ? "h-screen " : "h-20"
         } md:hidden transition-all backdrop-blur-2xl z-30 fixed   w-full flex-col items-center gap-5 p-1 border-b flex overflow-hidden`}
       >
         <div className="w-full flex flex-row justify-between items-center">
@@ -150,8 +150,8 @@ export const MenuEcomerce = ({
               onClick={() => setCarrito(!carrito)}
               className="text-sky-600 relative"
             >
-              <p className="p-1 text-xs bg-red-500 rounded-full text-white w-8 h-8 absolute z-50">
-                2
+              <p className="p-1 text-xs bg-red-500 rounded-full text-white w-2 h-2 absolute z-50">
+                {cantidadItems}
               </p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

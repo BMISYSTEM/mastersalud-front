@@ -54,7 +54,7 @@ export const LoginLayout = () => {
       }
       if (resp?.succes) {
         localStorage.setItem("token", resp?.succes);
-        navigate("/panel");
+        navigate("/panel/home");
       }
     } catch (error) {
       if (isAxiosError(error)) {

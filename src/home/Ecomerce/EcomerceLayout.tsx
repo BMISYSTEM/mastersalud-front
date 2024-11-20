@@ -112,7 +112,7 @@ export const EcomerceLayout = () => {
       <main className="relative w-full h-full   flex flex-row gap-8 md:mt-2  mb-5">
         {carrito ? <CarritoCompras  /> : null }
         {/* filtros */}
-        <div className="md:sticky top-0 w-52 h-96 md:flex hidden flex-col gap-2">
+        <div className="md:sticky top-0 w-52 h-[40rem] md:flex hidden overflow-auto flex-col gap-2 bg-white z-50">
           {filtrosSelect.length > 0  ? <p>Filtros aplicados</p> : null }
           <div className="w-auto flex flex-wrap gap-2">
             {filtrosSelect.map((filtro,index)=>(
@@ -146,7 +146,7 @@ export const EcomerceLayout = () => {
             </svg>
           </button>
           {filtrosOption === 1 ? (
-            <div className="p-1 flex flex-col text-sm">
+            <div className="p-1 flex flex-col h-96 text-sm bg-white overflow-auto">
               {allMarcas?.succes?.map((marca, index) => (
                 <button
                   onClick={() =>
@@ -184,7 +184,7 @@ export const EcomerceLayout = () => {
             </svg>
           </button>
           {filtrosOption === 4 ? (
-            <div className="p-1 flex flex-col text-sm">
+            <div className="p-1 flex flex-col text-sm h-96 bg-white overflow-auto">
               {caract?.succes?.map((caract, index) => (
                 <button
                   onClick={() =>
@@ -309,7 +309,7 @@ export const EcomerceLayout = () => {
           ) : null}
         </div>
         {/* productos */}
-        <div className="w-full flex flex-wrap gap-3 md:mt-0 mt-36 md:justify-start   justify-center">
+        <div className="w-full flex flex-wrap gap-3 md:mt-0 mt-36 md:justify-start   justify-center overflow-hidden">
           {isLoading ? (
             <div className="w-full h-full flex items-center justify-center">
               <img src={spiner} alt="" className="w-10 h-10" />
