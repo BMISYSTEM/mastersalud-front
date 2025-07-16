@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import ListCaracteristicas from "./components/ListCaracteristicas";
 import { Input } from "../../../componentsGlobal/Input";
 import { clienteAxios } from "../../../config/axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import useSWR from "swr";
 
 
@@ -73,7 +73,7 @@ const Caracteristicas = () => {
         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
         onClick={() => setModalIsOpen(true)}
       >
-        Crear Nuevo Marca
+        Crear Nueva Caracteristica
       </button>
       <ListCaracteristicas succes={caracteristicas} mutate={mutate} />
       <ReactModal
@@ -98,6 +98,7 @@ const Caracteristicas = () => {
           </button>
         </div>
       </ReactModal>
+      <ToastContainer/>
     </>
   );
 };

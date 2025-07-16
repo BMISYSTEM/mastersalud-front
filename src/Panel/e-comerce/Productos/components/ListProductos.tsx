@@ -4,6 +4,10 @@ import { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import useProductos from "../hooks/useProductos";
 import { toast } from "react-toastify";
+import useMarca from "../../Marcas/useMarcas/useMarca";
+import usePromociones from "../../Promociones/usePromociones/usePromociones";
+import { Marcas } from "../../Marcas/MarcasLayout";
+import { Promociones } from "../../Promociones/PromocionesLayout";
 
 export interface Productos {
   succes: Succe[];
@@ -30,6 +34,8 @@ const ListProductos = ({ succes }: Productos) => {
   const { updateImagen, updateEstado } = useProductos();
   const [modalImagenes, setModalImagenes] = useState(false);
   const [idimagenes, setIdImagenes] = useState(0);
+  const {data:allMarca} = useMarca()
+  const {data:allPromocion} = usePromociones()
   const openGallery = (id: number) => {
     setModalImagenes(true);
     setIdImagenes(id);
@@ -56,14 +62,15 @@ const ListProductos = ({ succes }: Productos) => {
     }
   };
 
-  const UpdateProducto = (producto: Succe) => {
-    toast.promise(updateEstado(producto), {
+  const UpdateProducto = async(producto: Succe) => {
+    await toast.promise(updateEstado(producto), {
       error: "se genero un error al cambiar el estado del producto",
       pending: "cambiando el estado del  producto",
       success: "Producto actualizado",
     });
   };
-
+  const allmarcas:Marcas = allMarca?.data;
+  const allpromociones:Promociones = allPromocion?.data;
   return (
     <div>
       <div className="w-full flex flex-row gap-2 items-center justify-between">
@@ -128,8 +135,8 @@ const ListProductos = ({ succes }: Productos) => {
           </div>
         </div>
       </div>
-      <div className="overflow-auto">
-        <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+      <div className="">
+        <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md overflow-auto">
           <thead className="bg-gray-200 border-b border-gray-300">
             <tr>
               <th className="text-xs px-6 text-left text-gray-600 font-semibold">
@@ -139,13 +146,7 @@ const ListProductos = ({ succes }: Productos) => {
                 Nombre
               </th>
               <th className="text-xs px-6 text-left text-gray-600 font-semibold">
-                codigo Marc
-              </th>
-              <th className="text-xs px-6 text-left text-gray-600 font-semibold">
                 Marca
-              </th>
-              <th className="text-xs px-6 text-left text-gray-600 font-semibold">
-                codigo Desc
               </th>
               <th className="text-xs px-6 text-left text-gray-600 font-semibold">
                 Descuento
@@ -193,16 +194,20 @@ const ListProductos = ({ succes }: Productos) => {
                   {Producto.nombre}
                 </td>
                 <td className="py-3 px-6 text-gray-700 border ">
-                  {Producto.id_marca}
+                  <select name="" id="" onChange={(e)=>UpdateProducto({...Producto,id_marca:Number(e.target.value)})}>
+                    {allmarcas?.succes?.map((marca,index)=>(
+                      <option key={index} value={marca.id} selected={marca.id === Producto.id_marca}>{marca.nombre}</option>
+                    )
+                    )}
+                  </select>
                 </td>
                 <td className="py-3 px-6 text-gray-700 border ">
-                  {Producto.nombre_marca}
-                </td>
-                <td className="py-3 px-6 text-gray-700 border ">
-                  {Producto.id_promocion}
-                </td>
-                <td className="py-3 px-6 text-gray-700 border ">
-                  {Producto.nombre_promocion}
+                  <select name="" id="" onChange={(e)=>UpdateProducto({...Producto,id_promocion:Number(e.target.value)})}>
+                    {allpromociones?.succes?.map((promocion,index)=>(
+                      <option key={index} value={promocion.id} selected={promocion.id === Producto.id_promocion}>{promocion.nombre}</option>
+                    )
+                    )}
+                  </select>
                 </td>
                 <td className="py-3 px-6 text-gray-700 border ">
                   {Producto.porcentaje}

@@ -13,6 +13,7 @@ import { PedidosLayout } from "./Panel/e-comerce/Pedidos/PedidosLayout";
 import { ProductDetalle } from "./home/Ecomerce/ProductDetalle";
 import Caracteristicas from "./Panel/e-comerce/caracteristicas/Caracteristicas";
 import { ConfigLayout } from "./Panel/config/ConfigLayout";
+import { EspecialistasLayout } from "./home/Especialistas/EspecialistasLayout";
 
 
 
@@ -35,6 +36,10 @@ export const router = createBrowserRouter(
             element:<ProductDetalle/>
         },
         {
+            path:'/especialistas/:ciudad/:especialidad/:modalidad',
+            element:<EspecialistasLayout/>
+        },
+        {
             path:'/login',
             element:<LoginLayout/>
         },
@@ -46,6 +51,7 @@ export const router = createBrowserRouter(
                     path:'/panel/home',
                     element:<HomeLayout/>
                 },
+                
                 {
                     path:'/panel/config',
                     element:<ConfigLayout/>

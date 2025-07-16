@@ -89,6 +89,10 @@ export const LoginLayout = () => {
         direccion:direccion,
         email:email,
         password:password,
+        virtual:1,
+        ciudad:' ',
+        presencial:1
+
       }
 
       try {
@@ -169,11 +173,6 @@ export const LoginLayout = () => {
               </button>
             )}
           </form>
-          <div className="mt-6 text-center">
-            <a href="#" className="text-blue-700 hover:text-blue-900 text-sm">
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
           <div className="mt-6 text-center">
             <button onClick={()=>setForm(2)} className="text-blue-700 hover:text-blue-900 text-sm">
               ¿No tienes una cuenta? Registrate.

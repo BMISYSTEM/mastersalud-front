@@ -4,6 +4,9 @@ import spiner from '../../../assets/spiner.svg'
 import fondo from './assets/fondo.webp'
 import { PhotoIcon } from '@heroicons/react/24/outline';
 import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import { Input } from '../../../componentsGlobal/Input';
+import { Especialidad } from '../../config/interfaces/especialidadesInterface';
 interface props {
   setInformacion: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -36,11 +39,52 @@ export interface Users {
     foto7:             string;
     foto8:             string;
     activo:            number;
+    ciudad:            string;
+    presencial:        boolean;
+    virtual:           boolean;
 }
-
+const cities = [
+    "Bogotá",
+    "Medellín",
+    "Cali",
+    "Barranquilla",
+    "Cartagena",
+    "Bucaramanga",
+    "Manizales",
+    "Pereira",
+    "Santa Marta",
+    "Cúcuta",
+    "Ibagué",
+    "Villavicencio",
+    "Neiva",
+    "Armenia",
+    "Montería",
+    "Popayán",
+    "Sincelejo",
+    "Riohacha",
+    "Tunja",
+    "Valledupar",
+  ];
 export const InformacionPersonal = ({ setInformacion }: props) => {
     const token = localStorage.getItem('token')
     const baseUrl = import.meta.env.VITE_URL_API;
+    /* campos input */
+    const [nombre,setNombre] = useState<string | number>('')
+    const [apellido,setApellidoe] = useState<string | number>('')
+    const [cedula,setCedula] = useState<string | number>('')
+    const [email,setEmail] = useState<string | number>('')
+    const [fijo,setFijo] = useState<string | number>('')
+    const [celular,setCelular] = useState<string | number>('')
+    const [cargo,setCargo] = useState<string | number>('')
+    const [horario,setHorario] = useState<string | number>('')
+    const [publico,setPublico] = useState<string | number>('')
+    const [medio,setMedio] = useState<string | number>('')
+    const [direccion,setDireccion] = useState<string | number>('')
+    const [ciudad,setCiudad] = useState<string | number>('')
+    const [virtual,setVirtual] = useState<boolean>(false)
+    const [presencial,setPresencial] = useState<boolean>(false)
+    const [cargando,setCargando] = useState<boolean>(false)
+
     const {data,isLoading,mutate} = useSWR('/api/users',()=>
     clienteAxios.get('/api/users',{
         headers:{
@@ -48,9 +92,31 @@ export const InformacionPersonal = ({ setInformacion }: props) => {
         }
     }))
     const user:Users = data?.data;
+    const { data:especialidades } = useSWR("/api/especialidades/all", () =>
+        clienteAxios.get("/api/especialidades/all")
+      );
 
+    const especi: Especialidad = especialidades?.data
 
-    const updateUser = async(datos:Users) =>{
+    const updateUser = async() =>{
+        const datos = {
+            ...user,
+            nombre:nombre,
+            apellido:apellido,
+            cedula:cedula,
+            email:email,
+            fijo:fijo,
+            celular:celular,
+            cargo:cargo,
+            horarioatencion:horario,
+            publico:publico,
+            mediospago:medio,
+            ciudad:ciudad,
+            direccion:direccion,
+            virtual:virtual ? 1 : 0 ,
+            presencial:presencial ? 1 : 0 
+        }
+        setCargando(true)
         await toast.promise(
             clienteAxios.post('/api/users/update',datos,{
                 headers:{
@@ -63,7 +129,8 @@ export const InformacionPersonal = ({ setInformacion }: props) => {
                 success:'Se actualizo la informacion'
             }
         )
-        mutate()
+        await mutate()
+        setCargando(false)
     }
 
     const handleChange = async(
@@ -89,6 +156,22 @@ export const InformacionPersonal = ({ setInformacion }: props) => {
           mutate()
         }
       };
+    useEffect(()=>{
+        setNombre(user?.name)
+        setApellidoe(user?.apellido)
+        setCedula(user?.cedula)
+        setEmail(user?.email)
+        setFijo(user?.fijo)
+        setCelular(user?.celular)
+        setCargo(user?.cargo)
+        setHorario(user?.horarioatencion)
+        setPublico(user?.publico)
+        setMedio(user?.mediospago)
+        setDireccion(user?.direccion)
+        setCiudad(user?.ciudad)
+        setVirtual(user?.virtual)
+        setPresencial(user?.presencial)
+    },[data])
 
   return (
     <section className="w-full md:w-1/3 h-full bg-white p-2 overflow-auto">
@@ -122,55 +205,68 @@ export const InformacionPersonal = ({ setInformacion }: props) => {
                                 </label>
                             </div>
                         </div>
-                <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Nombre:{user.name}</p>
-                    <input className='p-2 border rounded-xl' type="text"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,name:e.target.value})}} />
+                <div className='mb-2 w-full'>
+                    {cargando === false ?
+                        <button onClick={()=>updateUser()} className='w-full p-2 bg-green-500 text-white rounded-sm'>
+                            Guardar
+                        </button>
+                    :
+                    <p>Guardando informacion....</p>
+                    }
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Apellido: {user.apellido}</p>
-                    <input className='p-2 border rounded-xl' type="text"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,apellido:e.target.value})}} />
+                    <Input nombre='Nombre' valueInput={nombre} setValue={setNombre} type='text'/>
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Cedula/Nit: {user.cedula}</p>
-                    <input className='p-2 border rounded-xl' type="text"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,cedula:e.target.value})}} />
+                    <Input nombre='Apellido' valueInput={apellido} setValue={setApellidoe} type='text' />
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Email: {user.email}</p>
-                    <input className='p-2 border rounded-xl' type="email"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,email:e.target.value})}} />
+                   <Input nombre='cedula' setValue={setCedula} valueInput={cedula} type='number'/>
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Fijo: {user.fijo}</p>
-                    <input className='p-2 border rounded-xl' type="tel"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,fijo:e.target.value})}} />
+                    <Input nombre='Email' setValue={setEmail} valueInput={email} type='email'/>
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>telefono: {user.celular}</p>
-                    <input className='p-2 border rounded-xl' type="tel"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,celular:e.target.value})}} />
+                    <Input nombre='Fijo' setValue={setFijo} valueInput={fijo} type='number'/>
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Especialidad: {user.cargo}</p>
-                    <input className='p-2 border rounded-xl' type="text"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,cargo:e.target.value})}} />
+                    <Input nombre='Celular' setValue={setCelular} valueInput={celular} type='number'/>
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Horario de atencion: {user.horarioatencion}</p>
-                    <input className='p-2 border rounded-xl' type="text"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,horarioatencion:e.target.value})}} />
+                    <label htmlFor="">Especialidad</label>
+                    <select name="" id="" onChange={(e)=>setCargo(e.target.value)} className='w-full p-3 border border-blue-500'>
+                        {especi.succes.map((especi,index)=>(
+                            <option key={index} value={especi.nombre} selected={especi.nombre === user.cargo ? true : false}>{especi.nombre}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Publico de atencion: {user.publico}</p>
-                    <input className='p-2 border rounded-xl' type="text"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,publico:e.target.value})}} />
+                    <Input nombre='Horario de atencion' setValue={setHorario} valueInput={horario} type='text'/>
                 </div>
                 <div className='w-full flex flex-row gap-2 items-center justify-between'>
-                    <p>Medios de pago: {user.mediospago}</p>
-                    <input className='p-2 border rounded-xl' type="text"  onBlur={(e)=>{
-                        if(e.target.value !== '') updateUser({...user,mediospago:e.target.value})}} />
+                    <Input nombre='Publico de atencion' setValue={setPublico} valueInput={publico} type='text'/>
+                </div>
+                <div className='w-full flex flex-row gap-2 items-center justify-between'>
+                    <Input nombre='Medios de pago' setValue={setMedio} valueInput={medio} type='text'/>
+                </div>
+                <div className='w-full flex flex-row gap-2 items-center justify-between'>
+                    <Input nombre='Direccion' setValue={setDireccion} valueInput={direccion} type='text'/>
+                </div>
+                <div className='w-full flex flex-row gap-2 items-center justify-between'>
+                    <label htmlFor="">Ciudad</label>
+                    <select name="" id="" onChange={(e)=>setCiudad(e.target.value)} className='w-full p-3 border border-blue-500'>
+                        {cities.map((citi,index)=>(
+                            <option key={index} value={citi} selected={citi === user.ciudad ? true : false}>{citi}</option>
+                        ))}
+                    </select>   
+                </div>
+                <div className=' flex flex-row gap-2 items-center '>
+                    <label htmlFor="">Presencial</label>
+                    <input type="checkbox" checked={presencial} onChange={(e)=>setPresencial(e.target.checked)}/> 
+                </div>
+                <div className=' flex flex-row gap-2 items-center '>
+                    <label htmlFor="">Virtual</label>
+                    <input type="checkbox" checked={virtual} onChange={(e)=>setVirtual(e.target.checked)} /> 
                 </div>
                 <div className='w-full flex flex-wrap gap-2'>
                     <div className='flex flex-col gap-2 border p-1'>

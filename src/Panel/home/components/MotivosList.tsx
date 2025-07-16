@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../../../componentsGlobal/Input";
 import { clienteAxios } from "../../../config/axios";
 import { toast } from "react-toastify";
@@ -68,6 +68,10 @@ export const MotivosList = ({setNewMotivo}:props) => {
     }
   }))
   const motivos:Motivos = data?.data
+
+  useEffect(()=>{
+    setNombre('')
+  },[list])
   return (
     <section className="w-full h-full md:w-1/4 bg-white p-2 flex flex-col gap-5">
       <div className="w-full flex flex-row justify-between">

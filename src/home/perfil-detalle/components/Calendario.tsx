@@ -1,11 +1,14 @@
 
 import {  useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface props{
-    diaselect:React.Dispatch<React.SetStateAction<string>>
+    diaselect:React.Dispatch<React.SetStateAction<string>>;
+    motivo:number;
+    primera_visita: string|null
 }
 
-export const Calendario = ({diaselect}:props) => {
+export const Calendario = ({diaselect,motivo,primera_visita}:props) => {
     /**
      * Mes seleccionado
      */
@@ -80,8 +83,12 @@ export const Calendario = ({diaselect}:props) => {
    
     const [diasCalendario,setDiasCalendario] = useState([semanauno,semanados,semanatres,semanacuatro,semanasinco]);
     const seleccionfecha = (dia:number) =>{
-        setDiaSeleccion(dia)
-        diaselect(`${mesSeleccion + 1}/${dia}/${ano}`)
+        if(motivo && primera_visita){
+            setDiaSeleccion(dia)
+            diaselect(`${mesSeleccion + 1}/${dia}/${ano}`)
+        }else{
+            toast.warning('Seleccione un moivo y si es su primera vez con el especialista.')
+        }
     }
     
     useEffect(()=>{

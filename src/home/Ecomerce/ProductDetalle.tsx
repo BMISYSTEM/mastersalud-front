@@ -38,6 +38,7 @@ export const ProductDetalle = () => {
         const textoFormateado  = text.replace(/\*\*(.*?)\*\*/g, '<span style="font-weight: bold;">$1</span>')
         return textoFormateado
       }
+      return '';
     }
   return (
     <section className="w-full flex flex-col gap-2">
@@ -77,7 +78,8 @@ export const ProductDetalle = () => {
                   Ficha tecnica
                 </summary>
                 <p className="mt-3 text-gray-600 leading-relaxed">
-                <label htmlFor="" style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: handleTexto(productFilt[0].ficha_tecnica) }}/>
+                <label htmlFor="" style={{ whiteSpace: 'pre-wrap' }} 
+                dangerouslySetInnerHTML={{ __html: handleTexto(productFilt[0].ficha_tecnica)  }}/>
                 </p>
               </details>
               <details className="bg-gray-100 p-4 rounded-lg shadow-lg transition duration-300 ease-in-out">

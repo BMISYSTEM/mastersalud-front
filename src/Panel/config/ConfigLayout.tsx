@@ -10,10 +10,12 @@ export const ConfigLayout = () => {
   return (
     <>
     <section className="w-full flex flex-col gap-2 p-2 border">
-        <p className="text-xl font-bold">Especialidades</p>
+        <p className="text-xl font-bold ">Especialidades</p>
         <Especialidades/>
         <p className="text-xl font-bold">Medicos</p>
         <Medicos/>
+        <p className="text-xl font-bold">Fondo</p>
+        <Fondo/>
     </section>
     <ToastContainer/>
     </>
@@ -23,7 +25,7 @@ export const ConfigLayout = () => {
 
 const Especialidades = () =>{
     const [nombre,setNombre] = useState<string | number>('');
-    const {data,isLoading,mutate} = useSWR('/api/especialidades/all',()=>
+    const {data,mutate} = useSWR('/api/especialidades/all',()=>
     clienteAxios.get('/api/especialidades/all'));
     const createEspecialidad = async (e:React.FormEvent) =>{
         e.preventDefault()
@@ -104,7 +106,7 @@ const Especialidades = () =>{
                 </thead>
                 <tbody className="">
                     {especi?.succes?.map((espe,index)=>(
-                        <tr>
+                        <tr key={index}>
                             <td className="border bg-slate-300" contentEditable={true} onBlur={(e)=>{
 
                                     e.target.textContent ? updateEspecialidad({...espe,nombre:e.target.textContent}) : toast.warning('No hay texto, no se actualizara ')
@@ -160,10 +162,11 @@ export interface allMedic {
     ciudad:           string;
     presencial:       number;
     virtual:          number;
+    destacado:        number;
   }
 const Medicos = () =>{
 
-    const {data,isLoading,mutate} = useSWR('/api/medic/all',()=>
+    const {data,mutate} = useSWR('/api/medic/all',()=>
     clienteAxios.get('/api/medic/all'))
 
     const updateactivo = async(medic:detalle) => {
@@ -199,7 +202,7 @@ const Medicos = () =>{
             </thead>
             <tbody>
                 {medic?.succes?.map((medic,index)=>(
-                    <tr>
+                    <tr key={index}>
                         <td className="border text-sm px-2 py-1">{medic.name}</td>
                         <td className="border text-sm px-2 py-1">{medic.apellido}</td>
                         <td className="border text-sm px-2 py-1">{medic.cedula}</td>
@@ -214,13 +217,105 @@ const Medicos = () =>{
                             className={`${medic.activo ? 'bg-red-500' : 'bg-blue-500'} text-white px-2 py-1`}>
                                 {medic.activo ? 'Inactivar' : 'Activar'}
                             </button>
-                            <button className="bg-amber-500 text-white px-2 py-1">
-                                Destacar
+                            <button
+                            onClick={()=>updateactivo({...medic,destacado:medic.destacado ? 0 : 1})}
+                            className={`${medic.destacado ? 'bg-red-500' : 'bg-blue-500'} border text-white px-2 py-1`}>
+                                {medic.destacado ? 'No destacar' : 'Destacar'}
                             </button>
                         </td>
                     </tr>
                 ))}
             </tbody>
         </table>
+    )
+}
+
+export interface Home {
+    succes: SucceHome[];
+}
+
+export interface SucceHome {
+    id:         number;
+    fondo:      string;
+    created_at: null;
+    updated_at: Date;
+}
+
+
+const Fondo = () =>{
+    const baseUrl = import.meta.env.VITE_URL_API;
+    const [error, setError] = useState<string | null>(null);
+    const [fileName, setFileName] = useState<string | null>(null);
+    const {data,mutate} =  useSWR('/api/home/all',()=>
+    clienteAxios.get('/api/home/all'))
+    const handleFileChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+    
+        if (!file) {
+          setError('No se seleccionó ningún archivo.');
+          return;
+        }
+    
+        // Validar tipo de archivo
+        const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+        if (!validTypes.includes(file.type)) {
+          setError('Solo se permiten imágenes de tipo JPEG, PNG o JPG.');
+          setFileName(null);
+          return;
+        }
+    
+        // Validar tamaño del archivo
+        const maxSizeInMB = 2;
+        if (file.size > maxSizeInMB * 1024 * 1024) {
+          setError('El archivo no debe exceder los 2 MB.');
+          setFileName(null);
+          return;
+        }
+        
+        // Archivo válido
+        await toast.promise(
+            clienteAxios.post('/api/home/create',{fondo:file},{
+                headers:{
+                    Authorization:`Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            ,{
+                error:'Se genero un error al cargar la imagen',
+                pending:'Cargando la imagen',
+                success:'La imagen se cargo con exito'
+            }
+        )
+        mutate()
+        setError(null);
+        setFileName(file.name);
+      };
+    
+    const home:Home = data?.data;
+    return (
+        <section className="w-full flex flex-col gap-2">
+            <img src={`${baseUrl}/storage/${home?.succes?.[0]?.fondo}`} alt="" 
+            className="w-96 h-96 object-contain" />
+            <div className="flex flex-col items-center justify-center gap-4">
+            <label className="relative inline-flex items-center px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 cursor-pointer">
+                <input
+                type="file"
+                accept=".jpeg, .png, .jpg"
+                className="absolute inset-0 opacity-0 cursor-pointer"
+                onChange={handleFileChange}
+                />
+                Subir Foto
+            </label>
+
+            {fileName && (
+                <p className="text-green-500 font-medium">Archivo seleccionado: {fileName}</p>
+            )}
+
+            {error && (
+                <p className="text-red-500 font-medium">{error}</p>
+            )}
+            </div>
+
+        </section>
+
     )
 }

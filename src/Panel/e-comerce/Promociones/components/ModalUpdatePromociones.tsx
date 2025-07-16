@@ -35,6 +35,7 @@ export const ModalUpdatePromociones = ({id}:{id:number}) => {
       porcentaje:porcentaje,
       activo:1
     }
+
     await toast.promise(updatePromociones(datos),{
       error:'Se genero un error inesperado, consulte con soporte',
       pending:'Actualizando promocion',

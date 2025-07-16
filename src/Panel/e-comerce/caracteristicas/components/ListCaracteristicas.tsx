@@ -5,7 +5,7 @@ import { clienteAxios } from '../../../../config/axios';
 import { toast } from 'react-toastify';
 interface props {
     succes:Caracteristicas;
-    mutate:KeyedMutator<AxiosResponse<any, any>>
+    mutate:()=>void
 
 }
 const ListCaracteristicas = ({ mutate,succes}:props) => {
@@ -33,11 +33,27 @@ const ListCaracteristicas = ({ mutate,succes}:props) => {
           setDelete(false);
         }
       };
+
+    const updateCaracteristica = async(nombre:string,id:number)=>
+    {
+      toast.promise(
+        clienteAxios.post('/api/caracteristica/update',{nombre:nombre,id:id},{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        }),
+        {
+          error:'Se genero un error',
+          pending:'Actualizando',
+          success:'Actualizado con exito'
+        }
+      )
+    }
   return (
     <div>
       <p>{loadingDelete ? "Se esta eliminando Una marca" : null}</p>
       <h2 className="text-2xl font-semibold">
-        Lista de Marcas:{" "}
+        Lista de Caracteristicas:{" "}
         <p>{loadingDelete ? "Se esta eliminando Una marca" : null}</p>
       </h2>
       <div className="overflow-x-auto">
@@ -62,7 +78,12 @@ const ListCaracteristicas = ({ mutate,succes}:props) => {
                 className="hover:bg-gray-100 border-b border-gray-200"
               >
                 <td className="py-3 px-6 text-gray-700">{caract.id}</td>
-                <td className="py-3 px-6 text-gray-700">{caract.nombre}</td>
+                <td className="py-3 px-6 text-gray-700 bg-slate-300" contentEditable={true}
+                onBlur={(e)=>{
+                  if(e.target.textContent){
+                    updateCaracteristica(e.target.textContent,caract.id)
+                  }
+                }}>{caract.nombre}</td>
                 <td className="py-3 px-6 text-gray-700 w-full flex flex-row gap-4">
                   <button 
                   onClick={() => deleteMarca(caract.id)}

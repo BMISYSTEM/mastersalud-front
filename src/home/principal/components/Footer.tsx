@@ -19,11 +19,14 @@ export const Footer = () => {
           <Link to={'/especialistas'}>
             <p className='p-2 text-blue-500 border-b-2'>Especialistas</p>
           </Link>
-          <Link to={'/especialistas'}>
+          <Link to={'/e-comerce'}>
             <p className='p-2 text-blue-500 border-b-2'>E-comerce</p>
           </Link>
-          <Link to={'/especialistas'}>
+          <Link to={'/'}>
             <p className='p-2 text-blue-500 border-b-2'>Contactenos</p>
+          </Link>
+          <Link to={'/login'}>
+            <p className='p-2 text-blue-500 border-b-2'>Login</p>
           </Link>
         </div>
         {/* politicas */}

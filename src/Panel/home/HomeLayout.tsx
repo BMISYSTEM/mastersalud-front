@@ -1,11 +1,12 @@
 import ReactModal from "react-modal";
 import { MotivosList } from "./components/MotivosList";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Horarios from "./components/Horarios";
 import { InformacionPersonal } from "./components/InformacionPersonal";
 import useSWR from "swr";
 import { clienteAxios } from "../../config/axios";
 import { AllMedicInterface } from "./interface/medicInterface";
+import { toast } from "react-toastify";
 
 export const HomeLayout = () => {
   const token = localStorage.getItem('token');
@@ -13,7 +14,8 @@ export const HomeLayout = () => {
   const [horarios,setHorarios] = useState(false)
   const [informacion,setInformacion] = useState(false)
   const [listado,setListado] = useState(1);
-  const {data,isLoading,mutate} = useSWR('/api/medic/all/private',()=>
+
+  const {data,mutate} = useSWR('/api/medic/all/private',()=>
   clienteAxios.get('/api/medic/all/private',{
     headers:{
       Authorization:`Bearer ${token}`
@@ -55,12 +57,38 @@ export const HomeLayout = () => {
   }
 
 
-  const atendido = (id:number)=>{
-
+  const atendido = async (id:number)=>{
+    await toast.promise(
+      clienteAxios.get('/api/cita/atendido?id='+id,{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      })
+    ,
+    {
+      error:'Se genero un error al atender la cita',
+      pending:'Atendiendo la cita ...',
+      success:'La cita fue atendida de forma correcta ',
+    }
+    )
+    mutate()
   }
 
-  const eliminar = (id:number) =>{
-
+  const eliminar = async(id:number) =>{
+    await toast.promise(
+      clienteAxios.get('/api/cita/delete?id='+id,{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      })
+    ,
+    {
+      error:'Se genero un error al eliminar la cita',
+      pending:'Eliminando cita...',
+      success:'La cita fue eliminada de forma correcta ',
+    }
+    )
+    mutate()
   }
   return (
     <div className="p-6 flex flex-col gap-4 space-y-6 w-full ">
@@ -124,12 +152,7 @@ export const HomeLayout = () => {
                     <td className="text-center border">{cita.hora_inicio}</td>
                     <td className="text-center border">{cita.hora_fin}</td>
                     <td>
-                      <button onClick={()=>atendido(cita.id)} className="text-xs p-1 bg-green-500 text-white hover:bg-green-800 transition-all">
-                        Atendido
-                      </button>
-                      <button onClick={()=>eliminar(cita.id)} className="text-xs p-1 bg-red-500 text-white hover:bg-red-800 transition-all">
-                        Eliminar
-                      </button>
+
                     </td>
                   </tr>
                 )
@@ -244,7 +267,7 @@ export const HomeLayout = () => {
                 "{coment.observacion}"
               </p>
               <p className="text-gray-400 text-sm mt-2">Cliente {coment.nombre}</p>
-              <p className="text-gray-400 text-sm mt-2">creado el {coment.created_at}</p>
+              <p className="text-gray-400 text-sm mt-2">creado el {formaterFecha(coment.created_at)}</p>
               <p className="text-gray-400 text-sm mt-2">Puntaje {coment.calificacion}</p>
             </div>
           ))}

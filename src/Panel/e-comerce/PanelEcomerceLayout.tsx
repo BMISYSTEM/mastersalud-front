@@ -7,7 +7,7 @@ export const PanelEcomerceLayout = () => {
   return (
     <div className="flex">
       <AsideVar />
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-1">
         <Outlet/>
       </main>
     </div>

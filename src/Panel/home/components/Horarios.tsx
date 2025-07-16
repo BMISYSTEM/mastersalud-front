@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Input } from "../../../componentsGlobal/Input";
 import spiner from '../../../assets/spiner.svg'
 import { toast } from "react-toastify";
@@ -23,7 +23,6 @@ const Horarios = ({setHorario}:props) => {
   const [viernes,setviernes] = useState(false)
   const [sabado,setsabado] = useState(false)
   const [domingo,setdomingo] = useState(false)
-
   // crear horario
   const handleCreateHorario = async(e:React.FormEvent) =>{
     e.preventDefault()
@@ -83,6 +82,18 @@ const Horarios = ({setHorario}:props) => {
     }
   }))
   const horario:HorariosI = data?.data;
+
+  useEffect(()=>{
+    setHorai('')
+    setHoraf('')
+    setLunes(false)
+    setmartes(false)
+    setmiercoles(false)
+    setjueves(false)
+    setviernes(false)
+    setsabado(false)
+    setdomingo(false)
+  },[list])
   return (
     <section className="w-full md:w-auto h-full bg-white p-2">
         <div className="w-full flex flex-row justify-between p-2">

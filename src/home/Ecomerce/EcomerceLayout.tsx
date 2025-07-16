@@ -46,7 +46,7 @@ export const EcomerceLayout = () => {
   }
 
 
-  const {data:allCaract,isLoading:cargaCarac} = useSWR('/api/caracteristica/all',()=>
+  const {data:allCaract} = useSWR('/api/caracteristica/all',()=>
   clienteAxios.get('/api/caracteristica/all'))
   const caract:Carateristicasinterface = allCaract?.data;
   if(filtrosSelect.length > 0 )
@@ -109,7 +109,7 @@ export const EcomerceLayout = () => {
                     setfiltrosSelect={setfiltrosSelect}
                     />
       {/* productos */}
-      <main className="relative w-full h-full   flex flex-row gap-8 md:mt-2  mb-5">
+      <main className="relative w-full h-full   flex flex-row gap-8 md:mt-2  mb-5 overflow-hidden">
         {carrito ? <CarritoCompras  /> : null }
         {/* filtros */}
         <div className="md:sticky top-0 w-52 h-[40rem] md:flex hidden overflow-auto flex-col gap-2 bg-white z-50">
