@@ -1,6 +1,5 @@
 
 
-import logo from '../assets/logomastersinfondo.png'
 import facebook from '../assets/facebookazul.png'
 import instagram from '../assets/instagramcolor.png'
 import youtube from '../assets/youtube.png'
