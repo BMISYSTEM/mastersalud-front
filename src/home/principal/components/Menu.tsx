@@ -10,7 +10,7 @@ export const Menu = () => {
         <nav className='absolute border-b-2 h-20 w-full md:flex flex-row gap-5 justify-between p-2 items-center z-50 hidden'>
             {/* logo  */}
             <Link to={'/'} className='w-1/3 flex flex-row justify-start '>
-                <img src={logo} alt="" className='w-20' />
+                <img src={'/logomastersinfondo.png'} alt="" className='w-20' />
             </Link>
             <div className='w-full flex flex-row justify-end gap-2'>
                 <Link to={'/especialistas/todas/todas/0'}>

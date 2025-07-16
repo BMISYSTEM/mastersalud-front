@@ -43,7 +43,7 @@ export const MenuEcomerce = ({
       <nav className="backdrop-blur-2xl z-50  w-full  md:flex-row justify-between items-center gap-5 p-2 border-b md:flex hidden ">
         {/* logo */}
         <Link to={"/"} className="w-40  ">
-          <img src={logo} alt="" className="w-32" />
+          <img src={'/logomastersinfondo.png'} alt="" className="w-32" />
         </Link>
         {/* icono de categorias */}
         <form action="" className="w-full p-2 flex justify-center ">

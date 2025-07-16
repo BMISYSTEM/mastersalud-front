@@ -11,7 +11,7 @@ export const Footer = () => {
       <section className="w-full h-full flex md:flex-row flex-col  gap-1">
         {/* logo */}
         <div className="w-full h-full  flex items-center">
-          <img src={logo} alt="" />
+          <img src={'/logomastersinfondo.png'} alt="" />
         </div>
         {/* enlaces */}
         <div className="w-full h-full  flex flex-col gap-2 p-2">
@@ -32,13 +32,13 @@ export const Footer = () => {
         {/* politicas */}
         <div className="w-full h-full  flex flex-col gap-2 p-2">
           <h5 className='text-xl font-bold text-slate-950'>Politicas de la pagina</h5>
-          <a href="">Politica de tratamiento de datos</a>
-          <a href="">Uso de mi informacion personal</a>
-          <a href="">Uso de mi informacion por terceros</a>
-          <a href="">Terminos y condiciones</a>
-          <a href="">Proteccion de menores</a>
-          <a href="">Solicitud PQRS</a>
-          <a href="">RNT</a>
+          <a href="/Politica_Tratamiento_Datos.pdf" target='_blank'>Politica de tratamiento de datos</a>
+          <a href="/Uso_de_mi_informacion_personal.pdf" target='_blank'>Uso de mi informacion personal</a>
+          <a href="/Uso_de_mi_Información_por_Terceros.pdf" target='_blank'>Uso de mi informacion por terceros</a>
+          <a href="/Terminos_y_Condiciones.pdf" target='_blank'>Terminos y condiciones</a>
+          <a href="" target='_blank'>Proteccion de menores</a>
+          <a href="/Solicitud_PQRS.pdf" target='_blank'>Solicitud PQRS</a>
+          <a href="/Privacidad_y_cookies.pdf" target='_blank'>Privacidad y cookies</a>
         </div>
         {/* contacto */}
         <div className="w-full h-full  flex flex-col gap-2 p-2">
@@ -46,7 +46,7 @@ export const Footer = () => {
           <a href="">Correo: info@masterdescuentos.com
           </a>
           <a href="">Telefono: +6019273978</a>
-          <a href="">Whatsapp: +57 322 719 9754</a>
+          <a href="">Whatsapp: +57 318 9678600</a>
         </div>
       </section>
       {/* redes sociales y quien desarrolla */}
